@@ -1,0 +1,22 @@
+#
+# GNU screen config
+#
+
+# replace C-a with C-t for screen commands
+escape ^Tt
+
+# more scrolling history
+defscrollback 10000
+
+# when SSH fails ...
+autodetach on
+
+# customize UI
+startup_message off
+shelltitle 'bash'
+hardstatus alwayslastline
+
+#hardstatus string '%{gk}[%{wk}%?%-Lw%?%{=b kR}(%{W}%n*%f %t%?(%u)%?%{=b kR})%{= w}%?%+Lw%?%? %{g}][%{d}%l%{g}][ %{= w}%Y/%m/%d %0C:%s%a%{g} ]%{W}'
+# source: https://superuser.com/questions/51988/what-is-the-best-gnu-screen-taskbar-youve-used-seen
+# WOW ...
+hardstatus alwayslastline "%{b kw}%H %{r}%1` %{w}| %{g}%c %{w}| %{y}%d.%m.%Y %{w}| %{g}%l %{w}| %{-b kw}%u %-Lw%{= rW}%50> %n%f %t %{-}%+Lw%<"
