@@ -1,4 +1,6 @@
 (require 'package)
+
+;; package sources
 (setq package-archives
       '(("gnu" . "http://elpa.gnu.org/packages/")
         ("melpa" . "http://melpa.milkbox.net/packages/")
@@ -6,10 +8,11 @@
         ("elpy" . "http://jorgenschaefer.github.io/packages/")))
 (package-initialize)
 
+;; packages to install
 (defvar required-packages '(
-    avy
+    ;;avy
     auctex
-    color-theme
+    ;;color-theme
     dash
     evil
     evil-leader
@@ -18,8 +21,8 @@
     evil-surround
     flycheck
     free-keys
-    git-messenger
-    go-mode
+    ;;git-messenger
+    ;;go-mode
     helm
     helm-descbinds
     htmlize

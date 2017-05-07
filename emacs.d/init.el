@@ -4,13 +4,9 @@
 ;; ===========================================================
 ;; ===========================================================
 
-;; TODO: go through/clean-up all init files! (org, helm, builtin, etc.)
+
+;; TODO: 2 spaces as indent default for python
 ;; TODO: 80 lines warping for text, org and latex; (do I want this?)
-;; TODO: proper python mode! elpy?
-
-
-;; LEARN:
-;; more helm commands, projetile commands, org commands
 
 
 ;; RESOURCES
@@ -29,9 +25,6 @@
 ;; More tutorials: http://orgmode.org/worg/org-tutorials/
 ;; http://orgmode.org/orgcard.pdf (the cheatsheet)
 
-;; (https://emacs-helm.github.io/helm/)
-
-;; http://emacsredux.com/blog/2015/07/19/ace-jump-mode-is-dead-long-live-avy
 
 
 ;; ===========================================================
@@ -48,10 +41,9 @@
 ;; install packages
 (load-user-file "packages.el")
 
+;; emacs needs a path to executables, e.g., ispell or tex
 ;; https://sdqali.in/blog/2012/05/04/fixing-flyspell-for-emacs-in-mac-os-x/
 (setq exec-path (append exec-path '("/usr/local/bin")))
-
-;; AucTex needs the following paths (OSX-specific)
 (setenv "PATH" "/usr/local/bin:/Library/TeX/texbin/:$PATH" t)
 (setq exec-path (append exec-path '("/Library/TeX/texbin")))
 
@@ -65,11 +57,11 @@
 ;; ===========================================================
 ;; ===========================================================
 
-;; some useful custom-defined functions
-(load-user-file "init-customfuncs.el")
-
 ;; emacs built-in settings
 (load-user-file "init-builtin.el")
+
+
+
 
 ;; ===========================================================
 ;; ===========================================================
@@ -108,7 +100,7 @@
 ;; LaTeX
 (load-user-file "init-auctex.el")
 
-;; Evil mode (TODO: have a look at this stuff)
+;; Evil mode (TODO: have a look at it)
 ;;(load-user-file "init-evil.el")
 
 ;; automatic spell checking, requires ispell to be installed
@@ -119,7 +111,6 @@
 
 ;; helm:incremental completion
 (load-user-file "init-helm.el")
-
 
 ;; Git interface
 ;;(require 'magit)
@@ -150,28 +141,8 @@
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
-;; avy: navigating/jumping
-;; https://github.com/abo-abo/avy
-;; that's probably useful for plain text, e.g, when writing a paper ...
-(require 'avy)
-(global-set-key (kbd "C-c h") 'avy-goto-char)
-(global-set-key (kbd "C-c j") 'avy-goto-char-timer)
-
 ;; powerline
-;; source: https://github.com/jonathanchu/emacs-powerline
-;; (add-to-list 'load-path "~/.emacs.d/vendor/emacs-powerline")
-;; (require 'powerline)
-;; (custom-set-faces
-;;  '(mode-line ((t (:foreground "#030303" :background "#bdbdbd" :box nil))))
-;;  '(mode-line-inactive ((t (:foreground "#f9f9f9" :background "#666666" :box nil)))))
-;; (setq powerline-arrow-shape 'arrow)
-;; ;; proper display of powerline on Mac
-;; ;; source: https://emacs.stackexchange.com/questions/14984/emacs-powerline-inconsistent-colors-behind-arrows
-;; (setq ns-use-srgb-colorspace nil)
-
-;; powerline 2
 ;; https://github.com/milkypostman/powerline
-;; This seems better because it adjust the arrows based on font size!
 (add-to-list 'load-path "~/.emacs.d/vendor/powerline")
 (require 'powerline)
 (powerline-default-theme)
@@ -185,8 +156,7 @@
 ;; source: https://emacs.stackexchange.com/questions/14984/emacs-powerline-inconsistent-colors-behind-arrows
 (setq ns-use-srgb-colorspace nil)
 
-
-;; Cap'n Proto mode
+;; cap'n proto mode
 ;; source: https://github.com/sandstorm-io/capnproto/tree/master/highlighting/emacs
 (add-to-list 'load-path "~/.emacs.d/vendor/capnp-mode")
 (require 'capnp-mode)
