@@ -24,7 +24,7 @@
 (setq initial-scratch-message nil)
 
 ;; backup files: http://stackoverflow.com/questions/151945/how-do-i-control-how-emacs-makes-backup-files
-(setq backup-directory-alist `(("." . "~/.emacs_backup_files")))
+(setq backup-directory-alist `(("." . "~/.emacs.d/backup_files")))
 (setq backup-by-copying t)
 
 ;; highlights beginning/ending parenthesis

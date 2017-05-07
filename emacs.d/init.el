@@ -121,7 +121,7 @@
 ;; remembers last edit point when re-opening a file:
 ;; https://www.emacswiki.org/emacs/SavePlace
 (require 'saveplace)
-(setq save-place-file (concat user-emacs-directory "saveplace.el") )
+(setq save-place-file (concat user-emacs-directory "saveplace-history") )
 (setq-default save-place t)
 
 ;; snippet module
