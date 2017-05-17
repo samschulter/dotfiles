@@ -85,3 +85,7 @@
   (interactive)
   (kill-buffer (current-buffer)))
 (global-set-key (kbd "C-x k") 'bjm/kill-this-buffer)
+
+;; insert closing bracket automatically
+;; more info: http://ergoemacs.org/emacs/emacs_insert_brackets_by_pair.html
+(electric-pair-mode 1)
