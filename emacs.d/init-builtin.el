@@ -2,6 +2,8 @@
 ;; collection of customizations for builtin emacs functions
 ;;
 
+;; set default fill column (e.g., used in AucTeX mode)
+(setq-default fill-column 80)
 
 ;; copy content of whole buffer
 (defun copy-all ()
@@ -50,7 +52,9 @@
 
 ;; default indentation
 (setq-default indent-tabs-mode nil) ; no TAB for indent
-(setq-default tab-width 2)(setq sh-basic-offset 2)(setq sh-indentation 2)
+(setq-default tab-width 2)
+(setq sh-basic-offset 2)
+(setq sh-indentation 2)
 
 ;; highlights trailing whitespace
 (setq-default show-trailing-whitespace t)

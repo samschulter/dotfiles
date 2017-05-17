@@ -10,25 +10,15 @@
 
 ;; packages to install
 (defvar required-packages '(
-    ;;avy
     auctex
-    ;;color-theme
     dash
-    evil
-    evil-leader
-    evil-nerd-commenter
-    evil-numbers
-    evil-surround
     flycheck
     free-keys
-    ;;git-messenger
-    ;;go-mode
     helm
     helm-descbinds
     htmlize
     json-mode
     lua-mode
-    ;;magit
     markdown-mode
     multiple-cursors
     rfringe
@@ -36,14 +26,13 @@
     org
     org-bullets
     popup
-    ;;powerline
     projectile
     helm-projectile
     protobuf-mode
-    ;;python-mode
     elpy
     xclip
     yasnippet
+    visual-fill-column
     yaml-mode
     zenburn-theme
     hc-zenburn-theme

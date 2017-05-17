@@ -4,6 +4,12 @@
 ;; ===========================================================
 ;; ===========================================================
 
+;; remove:
+;; clipboard.el
+;; init-helm.el
+;; init-flyspell.el
+
+
 
 ;; TODO: 2 spaces as indent default for python
 ;; TODO: 80 lines warping for text, org and latex; (do I want this?)
@@ -20,6 +26,7 @@
 ;; https://www.masteringemacs.org/article/effective-editing-movement
 ;; https://www.youtube.com/watch?v=JWD1Fpdd4Pc
 ;; http://pragmaticemacs.com/
+;; https://blog.aaronbieber.com/
 
 ;; (short guide: http://orgmode.org/orgguide.pdf)
 ;; More tutorials: http://orgmode.org/worg/org-tutorials/
@@ -69,6 +76,7 @@
 ;; ===========================================================
 ;; ===========================================================
 
+
 ;; Zenburn
 ;; (load-theme 'zenburn t)
 ;; (set-face-attribute 'default nil :height 160)
@@ -86,37 +94,66 @@
 
 
 
-
-
 ;; ===========================================================
 ;; ===========================================================
 ;; External packages
 ;; ===========================================================
 ;; ===========================================================
 
-;; xclip for macOS (xterm)
-(load-user-file "clipboard.el")
+;; helm
+(require 'helm-config)
+(global-set-key (kbd "C-x C-f") 'helm-find-files)
+(global-set-key (kbd "C-x b") 'helm-buffers-list)
+(global-set-key (kbd "C-s") 'helm-occur)
+(global-set-key (kbd "M-x") 'helm-M-x)
+(global-set-key (kbd "M-y") 'helm-show-kill-ring)
+(helm-mode 1)
+;; projectile integration
+(projectile-mode 1)
+(helm-projectile-on)
+
+;; org-mode
+(load-user-file "init-org.el")
 
 ;; LaTeX
 (load-user-file "init-auctex.el")
 
-;; Evil mode (TODO: have a look at it)
-;;(load-user-file "init-evil.el")
+;; multiple cursors
+;; https://github.com/magnars/multiple-cursors.el
+(require 'multiple-cursors)
+(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
-;; automatic spell checking, requires ispell to be installed
-(load-user-file "init-flyspell.el")
+;; spell checker - requires ispell to be installed
+(dolist (hook '(text-mode-hook))
+  (add-hook hook (lambda () (flyspell-mode 1))))
 
-;; org mode
-(load-user-file "init-org.el")
+;; powerline
+;; https://github.com/milkypostman/powerline
+(add-to-list 'load-path "~/.emacs.d/vendor/powerline")
+(require 'powerline)
+(powerline-default-theme)
+(setq powerline-default-separator 'curve)
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(powerline-active1 ((t (:foreground "#444444" :background "#94bf7e" :box nil))))
+ '(powerline-active2 ((t (:foreground "#e0bc8d" :background "#ddd9d2" :box nil))))
+ '(powerline-inactive1 ((t (:foreground "#666666" :background "#d6ad4d" :box nil))))
+ '(powerline-inactive2 ((t (:foreground "#bca0bb" :background "#ddd9d2" :box nil)))))
+;; proper display of powerline on Mac
+;; source: https://emacs.stackexchange.com/questions/14984/emacs-powerline-inconsistent-colors-behind-arrows
+(setq ns-use-srgb-colorspace nil)
 
-;; helm:incremental completion
-(load-user-file "init-helm.el")
-
-;; Git interface
-;;(require 'magit)
-;;(global-set-key (kbd "C-x C-g C-s") 'magit-status)
-;;(setq magit-push-always-verify nil)
-;;(setq magit-last-seen-setup-instructions "1.4.0")
+;; cap'n proto mode
+;; source: https://github.com/sandstorm-io/capnproto/tree/master/highlighting/emacs
+(add-to-list 'load-path "~/.emacs.d/vendor/capnp-mode")
+(require 'capnp-mode)
+(add-to-list 'auto-mode-alist '("\\.capnp\\'" . capnp-mode))
 
 ;; remembers last edit point when re-opening a file:
 ;; https://www.emacswiki.org/emacs/SavePlace
@@ -133,35 +170,6 @@
 ;;        ))
 ;;(yas-global-mode 1)
 
-;; multiple cursors
-;; https://github.com/magnars/multiple-cursors.el
-(require 'multiple-cursors)
-(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
-(global-set-key (kbd "C->") 'mc/mark-next-like-this)
-(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
-
-;; powerline
-;; https://github.com/milkypostman/powerline
-(add-to-list 'load-path "~/.emacs.d/vendor/powerline")
-(require 'powerline)
-(powerline-default-theme)
-(setq powerline-default-separator 'curve)
-(custom-set-faces
- '(powerline-active1 ((t (:foreground "#444444" :background "#94bf7e" :box nil))))
- '(powerline-inactive1 ((t (:foreground "#666666" :background "#d6ad4d" :box nil))))
- '(powerline-active2 ((t (:foreground "#e0bc8d" :background "#ddd9d2" :box nil))))
- '(powerline-inactive2 ((t (:foreground "#bca0bb" :background "#ddd9d2" :box nil)))))
-;; proper display of powerline on Mac
-;; source: https://emacs.stackexchange.com/questions/14984/emacs-powerline-inconsistent-colors-behind-arrows
-(setq ns-use-srgb-colorspace nil)
-
-;; cap'n proto mode
-;; source: https://github.com/sandstorm-io/capnproto/tree/master/highlighting/emacs
-(add-to-list 'load-path "~/.emacs.d/vendor/capnp-mode")
-(require 'capnp-mode)
-(add-to-list 'auto-mode-alist '("\\.capnp\\'" . capnp-mode))
-
 
 
 
@@ -171,21 +179,13 @@
 ;; ===========================================================
 ;; ===========================================================
 
-;;(add-hook 'python-mode-hook (lambda() (
-;;  (setq-default tab-width 2)(setq sh-basic-offset 2)(setq sh-indentation 2))))
-;;(setq python-indent-offset 2)
-;;(defun python-custom-settings ()
-;;  (setq tab-width 2))
-;;(add-hook 'python-mode-hook 'python-custom-settings)
-(setq python-indent 2)
-
 
 ;; elpy: python environment
 ;; source: https://github.com/jorgenschaefer/elpy
 ;; TODO: install code completion stuff (jedi)
-;; TODO: how do I change the indent to 2???
+;; TODO: how do I change the default indent to 2???
 (elpy-enable)
-
+(setq python-indent 2)
 
 ;; TODO: with the elpy features C-c C-o, the function below becomes obsolete!
 ;; code folding w/o any package
@@ -206,3 +206,11 @@ F5 again will unset 'selective-display' by setting it to 0."
 
 
 
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (visual-fill-column zenburn-theme yaml-mode xclip smooth-scroll rfringe protobuf-mode org-bullets multiple-cursors monokai-theme markdown-mode lua-mode json-mode htmlize helm-projectile helm-descbinds hc-zenburn-theme free-keys flycheck evil-surround evil-numbers evil-nerd-commenter evil-leader elpy auctex))))
