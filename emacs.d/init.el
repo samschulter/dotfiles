@@ -4,16 +4,6 @@
 ;; ===========================================================
 ;; ===========================================================
 
-;; remove:
-;; clipboard.el
-;; init-helm.el
-;; init-flyspell.el
-
-
-
-;; TODO: 2 spaces as indent default for python
-;; TODO: 80 lines warping for text, org and latex; (do I want this?)
-
 
 ;; RESOURCES
 ;; configs of others:
