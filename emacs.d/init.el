@@ -77,9 +77,9 @@
 (set-face-attribute 'default nil :height 160)
 
 ;; Monokai
-;; (load-theme 'monokai t)
-;; (set-face-attribute 'default nil :family "Menlo")
-;; (set-face-attribute 'default nil :height 150)
+;;(load-theme 'monokai t)
+;;(set-face-attribute 'default nil :family "Menlo")
+;;(set-face-attribute 'default nil :height 160)
 
 
 
@@ -97,6 +97,10 @@
 (global-set-key (kbd "C-s") 'helm-occur)
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "M-y") 'helm-show-kill-ring)
+(global-set-key (kbd "C-x C-x") 'helm-all-mark-rings)
+;; lets replace isearch-backward with helm-resume (more often used)
+(global-set-key (kbd "C-r") 'helm-resume)
+;; turn it on
 (helm-mode 1)
 ;; projectile integration
 (projectile-mode 1)
@@ -132,7 +136,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(powerline-active1 ((t (:foreground "#444444" :background "#94bf7e" :box nil))))
- '(powerline-active2 ((t (:foreground "#e0bc8d" :background "#ddd9d2" :box nil))))
+ '(powerline-active2 ((t (:foreground "#545049" :background "#ddd9d2" :box nil)))) ; #e0bc8d
  '(powerline-inactive1 ((t (:foreground "#666666" :background "#d6ad4d" :box nil))))
  '(powerline-inactive2 ((t (:foreground "#bca0bb" :background "#ddd9d2" :box nil)))))
 ;; proper display of powerline on Mac

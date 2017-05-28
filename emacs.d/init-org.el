@@ -1,9 +1,12 @@
 (require 'org)
 (require 'htmlize)
 
-;; Most of the this configuration comes from:
+;; Resources:
 ;; https://blog.aaronbieber.com/2016/01/30/dig-into-org-mode.html
+;; http://orgmode.org/worg/org-tutorials/org-custom-agenda-commands.html
 
+
+;; - What about archiving?
 
 
 ;;;
@@ -15,8 +18,8 @@
 (setq org-todo-keywords '((sequence "TODO" "WAITING" "|" "DONE" "CANCELED")))
 
 ;; path to all my task files
-(setq org-directory "~/Google Drive/org/")
-(setq org-agenda-files '("~/Google Drive/org/"))
+(setq org-directory "~/Dropbox/org/")
+(setq org-agenda-files '("~/Dropbox/org/"))
 
 
 
@@ -25,10 +28,71 @@
 ;;;
 
 ;; global key to open the agenda
-(define-key global-map (kbd "C-c a") 'org-agenda-list)
+(define-key global-map (kbd "C-c a") 'org-agenda)
+(setq org-agenda-window-setup 'current-window)
 
-;; TODO: define proper keys for the agenda view!
-;; see C-h m in agenda view for all commands
+;; span of the agenda (show agenda from yesterday for 5 days)
+(setq org-agenda-start-day "-1d")
+(setq org-agenda-span 5)
+(setq org-agenda-start-on-weekday nil)
+
+;; remove scheduled DONE items in agenda
+;;(setq org-agenda-skip-scheduled-if-done t)
+
+(setq org-agenda-custom-commands
+      '(("d" "My custom agenda view!"
+         ((agenda "")
+          (alltodo "")))))
+;;(setq org-agenda-custom-commands
+;;      '(("d" "My custom agenda view!"
+;;         ((agenda "")
+;;          (alltodo ""
+;;                   ((org-agenda-skip-function '(org-agenda-skip-if 'scheduled 'deadline))
+;;                    (org-agenda-overriding-header "Non-schedule/deadline items:")))))))
+
+;; TODO: tweak this agenda view: can we only show non-scheduled items in the lower part?
+;; TODO: we eventually should create one ideas.org file that is really just for prototype ideas; as soon as we have something more concrete, we should create a separate file for it? Each todo is clearly assigned to projects.
+
+
+
+
+
+;;;
+;;; Mobile org
+;;;
+;;; https://mobileorg.github.io/documentation/
+
+;; Set to the name of the file where new notes will be stored
+(setq org-mobile-inbox-for-pull "~/Dropbox/org/todos.org")
+;; Set to <your Dropbox root directory>/MobileOrg.
+(setq org-mobile-directory "~/Dropbox/Apps/MobileOrg")
+
+;; Auto-sync
+;; https://stackoverflow.com/questions/8432108/how-to-automatically-do-org-mobile-push-org-mobile-pull-in-emacs
+;; Run org-mobile-{pull,push} every time Emacs gets idle for my-org-mobile-sync-secs
+(defvar my-org-mobile-sync-secs (* 60 3))
+
+(defvar my-org-mobile-sync-timer nil)
+
+(defun my-org-mobile-sync-pull-and-push ()
+  (org-mobile-pull)
+  (org-mobile-push)
+  (message "org-mobile sync done")
+  )
+
+(defun my-org-mobile-sync-start ()
+  "Start automated org-mobile syncing"
+  (interactive)
+  (setq my-org-mobile-sync-timer
+        (run-with-idle-timer my-org-mobile-sync-secs t
+                             'my-org-mobile-sync-pull-and-push)))
+
+(defun my-org-mobile-sync-stop ()
+  "Stop automated org-mobile syncing"
+  (interactive)
+  (cancel-timer my-org-mobile-sync-timer))
+
+(my-org-mobile-sync-start)
 
 
 
@@ -40,7 +104,7 @@
 ;; https://blog.aaronbieber.com/2016/01/30/dig-into-org-mode.html
 (setq org-capture-templates
       '(("a" "My TODO task format." entry
-         (file "tasks.org")
+         (file "todos.org")
          "* TODO %?
 SCHEDULED: %t")))
 (defun sjs-org-task-capture ()
@@ -48,6 +112,13 @@ SCHEDULED: %t")))
   (interactive)
   (org-capture nil "a"))
 (define-key global-map (kbd "C-c c") 'sjs-org-task-capture)
+
+;; TODO: we should have more templates:
+;; TODOs: non-scheduled, scheduled, deadline
+;; Just notes: capture something (eventually with a date?) in a separate file, e.g., notes or resources or links??? We may store websites, papers, links, etc. in this file?
+
+
+
 
 
 
@@ -64,6 +135,28 @@ SCHEDULED: %t")))
 ;; add timestamp when I postpone tasks (deadline or scheduled) ...
 (setq org-log-redeadline (quote time))
 (setq org-log-reschedule (quote time))
+
+;; define some keybindings for org-mode to move items
+(add-hook 'org-mode-hook (lambda ()
+  (local-set-key "\M-h" 'org-do-promote)
+  (local-set-key "\M-s" 'org-do-demote)
+  (local-set-key (kbd "M-S-h") 'org-promote-subtree)
+  (local-set-key (kbd "M-S-s") 'org-demote-subtree)
+  (local-set-key "\M-t" 'org-metadown)
+  (local-set-key "\M-n" 'org-metaup)))
+
+;; when embedding source code, apply proper font styles
+(setq org-src-fontify-natively t)
+
+;; command for pdf export
+(setq org-latex-to-pdf-process (list "latexmk -pdf %f"))
+
+;; in case we ever embed images into an org file:
+;;(setq org-startup-with-inline-images t)
+;;(setq org-image-actual-width 600)
+
+
+
 
 
 
