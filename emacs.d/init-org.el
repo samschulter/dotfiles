@@ -7,6 +7,7 @@
 
 
 ;; - What about archiving?
+;; - How to properly capture? todos.org, ideas.org, <project_name>.org?
 
 
 ;;;
@@ -39,19 +40,15 @@
 ;; remove scheduled DONE items in agenda
 ;;(setq org-agenda-skip-scheduled-if-done t)
 
-(setq org-agenda-custom-commands
-      '(("d" "My custom agenda view!"
-         ((agenda "")
-          (alltodo "")))))
 ;;(setq org-agenda-custom-commands
 ;;      '(("d" "My custom agenda view!"
 ;;         ((agenda "")
-;;          (alltodo ""
-;;                   ((org-agenda-skip-function '(org-agenda-skip-if 'scheduled 'deadline))
-;;                    (org-agenda-overriding-header "Non-schedule/deadline items:")))))))
-
-;; TODO: tweak this agenda view: can we only show non-scheduled items in the lower part?
-;; TODO: we eventually should create one ideas.org file that is really just for prototype ideas; as soon as we have something more concrete, we should create a separate file for it? Each todo is clearly assigned to projects.
+;;          (alltodo "")))))
+(setq org-agenda-custom-commands
+      '(("d" "My custom agenda view!"
+         (( agenda "" )
+          ( alltodo "" ((org-agenda-skip-function '(org-agenda-skip-entry-if 'scheduled 'deadline)) (org-agenda-overriding-header "NON-SCHEDULE/DEADLINE ITEMS:")) )))
+        ))
 
 
 
