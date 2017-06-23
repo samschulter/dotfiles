@@ -12,6 +12,7 @@
 (defvar required-packages '(
     auctex
     dash
+    expand-region
     flycheck
     free-keys
     helm

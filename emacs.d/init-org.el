@@ -7,7 +7,9 @@
 
 
 ;; - What about archiving?
-;; - How to properly capture? todos.org, ideas.org, <project_name>.org?
+;; - Encryption ... moving the org directory to boxcryptor does not help
+;;   if we use mobile-org since this will make an unencrypted copy into
+;;   dropbox.
 
 
 ;;;
@@ -16,11 +18,15 @@
 
 ;; defines my custom state sequence
 ;; (everything behind the pipe symbol "|" are considered as complete tasks)
-(setq org-todo-keywords '((sequence "TODO" "WAITING" "|" "DONE" "CANCELED")))
+(setq org-todo-keywords '((sequence "TODO" "NEXT" "WAITING" "|" "DONE" "CANCELED")))
 
 ;; path to all my task files
 (setq org-directory "~/Dropbox/org/")
-(setq org-agenda-files '("~/Dropbox/org/"))
+;;(setq org-agenda-files '("~/Dropbox/org/"))
+(load-library "find-lisp")
+(setq org-agenda-files (find-lisp-find-files "~/Dropbox/org" "\.org$"))
+
+
 
 
 
@@ -40,6 +46,10 @@
 ;; remove scheduled DONE items in agenda
 ;;(setq org-agenda-skip-scheduled-if-done t)
 
+(setq org-tags-match-list-sublevels 'indented)
+;(setq org-agenda-todo-list-sublevels nil)
+;(setq org-use-tag-inheritance nil)
+
 ;;(setq org-agenda-custom-commands
 ;;      '(("d" "My custom agenda view!"
 ;;         ((agenda "")
@@ -47,9 +57,39 @@
 (setq org-agenda-custom-commands
       '(("d" "My custom agenda view!"
          (( agenda "" )
+          ( todo "NEXT" )
           ( alltodo "" ((org-agenda-skip-function '(org-agenda-skip-entry-if 'scheduled 'deadline)) (org-agenda-overriding-header "NON-SCHEDULE/DEADLINE ITEMS:")) )))
+        ("w" "List of WAITING items"
+         todo "WAITING")
         ))
 
+
+
+;;;
+;;; Capture
+;;;
+
+;; defines a single template and wraps the selection of it in the capture buffer
+;; https://blog.aaronbieber.com/2016/01/30/dig-into-org-mode.html
+(setq org-capture-templates
+      '(("a" "TODO format." entry
+         (file "todos.org")
+         "* TODO %?")
+
+        ("s" "Scheduled TODO format." entry
+         (file "todos.org")
+         "* TODO %?
+SCHEDULED: %t")
+
+        ("d" "Deadline TODO format." entry
+         (file "todos.org")
+         "* TODO %?
+DEADLINE: %t")
+
+        ("p" "Project format." entry
+         (file "projects.org")
+         "* %? :project:")))
+(define-key global-map (kbd "C-c c") 'org-capture)
 
 
 
@@ -90,31 +130,6 @@
   (cancel-timer my-org-mobile-sync-timer))
 
 (my-org-mobile-sync-start)
-
-
-
-;;;
-;;; Capture
-;;;
-
-;; defines a single template and wraps the selection of it in the capture buffer
-;; https://blog.aaronbieber.com/2016/01/30/dig-into-org-mode.html
-(setq org-capture-templates
-      '(("a" "My TODO task format." entry
-         (file "todos.org")
-         "* TODO %?
-SCHEDULED: %t")))
-(defun sjs-org-task-capture ()
-  "Capture a task with my default template."
-  (interactive)
-  (org-capture nil "a"))
-(define-key global-map (kbd "C-c c") 'sjs-org-task-capture)
-
-;; TODO: we should have more templates:
-;; TODOs: non-scheduled, scheduled, deadline
-;; Just notes: capture something (eventually with a date?) in a separate file, e.g., notes or resources or links??? We may store websites, papers, links, etc. in this file?
-
-
 
 
 

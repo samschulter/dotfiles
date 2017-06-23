@@ -10,6 +10,7 @@
 ;; https://github.com/hrs/dotfiles/blob/master/emacs.d/configuration.org
 ;; https://github.com/aaronbieber/dotfiles/tree/master/configs/emacs.d/lisp
 ;; http://aaronbedra.com/emacs.d/
+;; https://github.com/magnars/.emacs.d
 
 ;; helpful resources:
 ;; https://github.com/xiaohanyu/oh-my-emacs
@@ -21,6 +22,9 @@
 ;; (short guide: http://orgmode.org/orgguide.pdf)
 ;; More tutorials: http://orgmode.org/worg/org-tutorials/
 ;; http://orgmode.org/orgcard.pdf (the cheatsheet)
+
+;; Shall we try this?
+;; https://github.com/wandersoncferreira/helm-spotify-plus
 
 
 
@@ -73,13 +77,13 @@
 
 ;; High-contrast Zenburn
 ;; source: https://github.com/edran/hc-zenburn-emacs
-(load-theme 'hc-zenburn t)
-(set-face-attribute 'default nil :height 160)
+;;(load-theme 'hc-zenburn t)
+;;(set-face-attribute 'default nil :height 160)
 
 ;; Monokai
-;;(load-theme 'monokai t)
-;;(set-face-attribute 'default nil :family "Menlo")
-;;(set-face-attribute 'default nil :height 160)
+(load-theme 'monokai t)
+(set-face-attribute 'default nil :family "Menlo")
+(set-face-attribute 'default nil :height 160)
 
 
 
@@ -120,6 +124,10 @@
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
+;; expand region
+(require 'expand-region)
+(global-set-key (kbd "C-=") 'er/expand-region)
+
 ;; spell checker - requires ispell to be installed
 (dolist (hook '(text-mode-hook))
   (add-hook hook (lambda () (flyspell-mode 1))))
@@ -135,9 +143,15 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(powerline-active1 ((t (:foreground "#444444" :background "#94bf7e" :box nil))))
- '(powerline-active2 ((t (:foreground "#545049" :background "#ddd9d2" :box nil)))) ; #e0bc8d
- '(powerline-inactive1 ((t (:foreground "#666666" :background "#d6ad4d" :box nil))))
+ ;; for zenburn-hc
+ ;;'(powerline-active1 ((t (:foreground "#444444" :background "#94bf7e" :box nil))))
+ ;;'(powerline-active2 ((t (:foreground "#545049" :background "#ddd9d2" :box nil))))
+ ;;'(powerline-inactive1 ((t (:foreground "#666666" :background "#d6ad4d" :box nil))))
+ ;;'(powerline-inactive2 ((t (:foreground "#bca0bb" :background "#ddd9d2" :box nil)))))
+ ;; for monokai
+ '(powerline-active1 ((t (:foreground "#444444" :background "#a37af5" :box nil))))
+ '(powerline-active2 ((t (:foreground "#545049" :background "#ddd9d2" :box nil))))
+ '(powerline-inactive1 ((t (:foreground "#666666" :background "#ffa826" :box nil))))
  '(powerline-inactive2 ((t (:foreground "#bca0bb" :background "#ddd9d2" :box nil)))))
 ;; proper display of powerline on Mac
 ;; source: https://emacs.stackexchange.com/questions/14984/emacs-powerline-inconsistent-colors-behind-arrows
@@ -207,4 +221,4 @@ F5 again will unset 'selective-display' by setting it to 0."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (visual-fill-column zenburn-theme yaml-mode xclip smooth-scroll rfringe protobuf-mode org-bullets multiple-cursors monokai-theme markdown-mode lua-mode json-mode htmlize helm-projectile helm-descbinds hc-zenburn-theme free-keys flycheck evil-surround evil-numbers evil-nerd-commenter evil-leader elpy auctex))))
+    (helm-spotify-plus visual-fill-column zenburn-theme yaml-mode xclip smooth-scroll rfringe protobuf-mode org-bullets multiple-cursors monokai-theme markdown-mode lua-mode json-mode htmlize helm-projectile helm-descbinds hc-zenburn-theme free-keys flycheck evil-surround evil-numbers evil-nerd-commenter evil-leader elpy auctex))))
