@@ -20,11 +20,19 @@
 ;; (everything behind the pipe symbol "|" are considered as complete tasks)
 (setq org-todo-keywords '((sequence "TODO" "NEXT" "WAITING" "|" "DONE" "CANCELED")))
 
-;; path to all my task files
-(setq org-directory "~/Dropbox/org/")
-;;(setq org-agenda-files '("~/Dropbox/org/"))
-(load-library "find-lisp")
-(setq org-agenda-files (find-lisp-find-files "~/Dropbox/org" "\.org$"))
+(if (file-exists-p "~/Dropbox/org/")
+    (progn
+       ;; path to all my task files
+       (setq org-directory "~/Dropbox/org/")
+       ;;(setq org-agenda-files '("~/Dropbox/org/"))
+       (load-library "find-lisp")
+       (setq org-agenda-files (find-lisp-find-files "~/Dropbox/org" "\.org$")))
+  nil)
+;;;; path to all my task files
+;;(setq org-directory "~/Dropbox/org/")
+;;;;(setq org-agenda-files '("~/Dropbox/org/"))
+;;(load-library "find-lisp")
+;;(setq org-agenda-files (find-lisp-find-files "~/Dropbox/org" "\.org$"))
 
 
 
