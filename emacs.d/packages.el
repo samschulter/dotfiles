@@ -10,6 +10,7 @@
 
 ;; packages to install
 (defvar required-packages '(
+    ace-window
     auctex
     dash
     expand-region

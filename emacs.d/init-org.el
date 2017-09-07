@@ -39,9 +39,9 @@
 (setq org-agenda-window-setup 'current-window)
 
 ;; span of the agenda (show agenda from yesterday for 5 days)
-(setq org-agenda-start-day "-1d")
-(setq org-agenda-span 5)
 (setq org-agenda-start-on-weekday nil)
+;(setq org-agenda-start-day "-1d") # start "yesterday"
+(setq org-agenda-span 5)
 
 ;; remove scheduled DONE items in agenda
 ;;(setq org-agenda-skip-scheduled-if-done t)
@@ -58,6 +58,7 @@
       '(("d" "My custom agenda view!"
          (( agenda "" )
           ( todo "NEXT" )
+          ( todo "WAITING" )
           ( alltodo "" ((org-agenda-skip-function '(org-agenda-skip-entry-if 'scheduled 'deadline)) (org-agenda-overriding-header "NON-SCHEDULE/DEADLINE ITEMS:")) )))
         ("w" "List of WAITING items"
          todo "WAITING")
@@ -80,6 +81,10 @@
          (file "todos.org")
          "* TODO %?
 SCHEDULED: %t")
+
+        ("n" "NEXT format." entry
+         (file "todos.org")
+         "* NEXT %?")
 
         ("d" "Deadline TODO format." entry
          (file "todos.org")
@@ -167,6 +172,10 @@ DEADLINE: %t")
 ;;(setq org-startup-with-inline-images t)
 ;;(setq org-image-actual-width 600)
 
+;; for org-refile:
+;; https://blog.aaronbieber.com/2017/03/19/organizing-notes-with-refile.html
+(setq org-refile-targets '((org-agenda-files :maxlevel . 5)))
+
 
 
 
@@ -191,4 +200,17 @@ DEADLINE: %t")
 (with-eval-after-load 'org
   (setq org-startup-indented t) ; Enables `org-indent-mode' by default
   (add-hook 'org-mode-hook 'visual-line-mode) ; proper text warping
-  (add-hook 'org-mode-hook 'visual-fill-column-mode)) ; warps text at fill-column
+  ;(add-hook 'org-mode-hook 'visual-fill-column-mode) ; warps text at fill-column
+  )
+
+;; Don't let Monokai change the font sizes
+;; https://emacs.stackexchange.com/questions/22584/disable-enlarged-org-mode-header-appearance
+(defun my/org-mode-hook ()
+  "Stop the org-level headers from increasing in height relative to the other text."
+  (dolist (face '(org-level-1
+                  org-level-2
+                  org-level-3
+                  org-level-4
+                  org-level-5))
+    (set-face-attribute face nil :weight 'semi-bold :height 1.0)))
+(add-hook 'org-mode-hook 'my/org-mode-hook)
