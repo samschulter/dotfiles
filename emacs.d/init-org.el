@@ -142,7 +142,9 @@ DEADLINE: %t")
   (interactive)
   (cancel-timer my-org-mobile-sync-timer))
 
-(my-org-mobile-sync-start)
+(if (file-exists-p "~/Dropbox/org/")
+    (my-org-mobile-sync-start)
+  nil)
 
 
 
