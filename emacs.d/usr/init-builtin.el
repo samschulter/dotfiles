@@ -5,13 +5,6 @@
 ;; set default fill column (e.g., used in AucTeX mode)
 (setq-default fill-column 80)
 
-;; copy content of whole buffer
-(defun copy-all ()
-  (interactive)
-  (clipboard-kill-ring-save (point-min) (point-max))
-  (message "Copied to clipboard."))
-(global-set-key (kbd "C-c C-a") 'copy-all)
-
 ;; adds line numbers on the left side of the buffer
 (add-hook 'find-file-hook (lambda () (linum-mode 1)))
 
@@ -26,7 +19,7 @@
 (setq initial-scratch-message nil)
 
 ;; backup files: http://stackoverflow.com/questions/151945/how-do-i-control-how-emacs-makes-backup-files
-(setq backup-directory-alist `(("." . "~/.emacs.d/backup_files")))
+(setq backup-directory-alist `(("." . "~/.emacs.d/auto-backup-files")))
 (setq backup-by-copying t)
 
 ;; highlights beginning/ending parenthesis
@@ -59,9 +52,6 @@
 ;; highlights trailing whitespace
 (setq-default show-trailing-whitespace t)
 
-;; refresh the whole screen
-(global-set-key (kbd "C-c d") 'redraw-display)
-
 ;; disable vc mode (it's soooo slow on a mounted network device)
 ;; http://snak.tumblr.com/post/4203099162/disable-vc-mode
 (setq vc-handled-backends nil)
@@ -89,3 +79,20 @@
 ;; insert closing bracket automatically
 ;; more info: http://ergoemacs.org/emacs/emacs_insert_brackets_by_pair.html
 (electric-pair-mode 1)
+
+;; spell checker - requires ispell to be installed
+(if (display-graphic-p)
+    (progn
+      (dolist (hook '(text-mode-hook))
+        (add-hook hook (lambda () (flyspell-mode 1)))))
+    )
+
+;; remembers last edit point when re-opening a file:
+;; https://www.emacswiki.org/emacs/SavePlace
+(require 'saveplace)
+(setq save-place-file (concat user-emacs-directory "saveplace-history") )
+(setq-default save-place t)
+
+;; ace-window
+;; easily switch between multiple windows
+(global-set-key (kbd "M-p") 'ace-window)

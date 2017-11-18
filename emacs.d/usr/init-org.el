@@ -1,3 +1,7 @@
+;;
+;; org-mode environment
+;;
+
 (require 'org)
 (require 'htmlize)
 
@@ -5,7 +9,7 @@
 ;; https://blog.aaronbieber.com/2016/01/30/dig-into-org-mode.html
 ;; http://orgmode.org/worg/org-tutorials/org-custom-agenda-commands.html
 
-;; - What about archiving?
+;; - Archiving?
 ;; - Encryption ... moving the org directory to boxcryptor does not help
 ;;   if we use mobile-org since this will make an unencrypted copy into
 ;;   dropbox. => I never use org-mobile ... go for encryption

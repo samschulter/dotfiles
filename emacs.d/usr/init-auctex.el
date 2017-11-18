@@ -1,6 +1,9 @@
-;;;
-;;; Reference: http://www.stefanom.org/setting-up-a-nice-auctex-environment-on-mac-os-x/
-;;;
+;;
+;; LaTeX environment
+;;
+
+;; Reference: http://www.stefanom.org/setting-up-a-nice-auctex-environment-on-mac-os-x/
+;; NOTE: latex compiling and pdf viewing will only work on my local machine ...
 
 ;; enable parsing the tex files on load and save
 (setq TeX-parse-self t)
@@ -12,12 +15,15 @@
 
 ;; activate spell-checking
 (add-hook 'LaTeX-mode-hook 'flyspell-mode)
+
 ;; activate visual-line-mode and visual-fill-column-mode
 (add-hook 'LaTeX-mode-hook 'visual-line-mode)
 (add-hook 'LaTeX-mode-hook 'visual-fill-column-mode)
+
 ;; activate RefTeX
 ;; It's awesome: https://www.gnu.org/software/emacs/manual/html_node/reftex/RefTeX-in-a-Nutshell.html
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
+
 ;; active RefTex-AucTeX interface
 ;; see: https://www.gnu.org/software/emacs/manual/html_node/reftex/AUCTeX_002dRefTeX-Interface.html
 (setq reftex-plug-into-AUCTeX t)

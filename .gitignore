@@ -1,5 +1,6 @@
 emacs.d/auto-save-list
 emacs.d/backup_files
+emacs.d/auto-backup-files
 emacs.d/elpa
 emacs.d/helm-adaptive-history
 emacs.d/projectile.cache
