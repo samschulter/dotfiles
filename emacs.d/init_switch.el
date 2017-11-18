@@ -4,6 +4,25 @@
 ;; ===========================================================
 ;; ===========================================================
 
+;; resources:
+;; http://emacs.sexy/#resources
+;; https://github.com/emacs-tw/awesome-emacs
+
+
+;; fixes:
+;; colors in GNU screen: https://stackoverflow.com/questions/11148321/how-to-preserve-emacs-colors-from-regular-terminal-to-gnu-screen
+
+;; interesting packages:
+;; http://pragmaticemacs.com/emacs/easily-manage-emacs-workspaces-with-eyebrowse/
+
+
+;; Things to try:
+;; highlight-changes-mode:
+;; http://emacs-fu.blogspot.com/2009/05/tracking-changes.html (we might only want to highlight the background color a bit?)
+;; https://www.emacswiki.org/emacs/TrackChanges (we might want to remove the highlighting after saving the file)
+
+
+
 
 
 

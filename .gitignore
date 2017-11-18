@@ -9,3 +9,5 @@ emacs.d/saveplace-history
 emacs.d/bookmarks
 emacs.d/.mc-lists.el
 emacs.d/.org-id-locations
+emacs.d/eshell
+

@@ -60,8 +60,8 @@
 
 ;; High-contrast Zenburn
 ;; source: https://github.com/edran/hc-zenburn-emacs
-;;(load-theme 'hc-zenburn t)
-;;(set-face-attribute 'default nil :height 160)
+(load-theme 'hc-zenburn t)
+(set-face-attribute 'default nil :height 160)
 
 ;; Monokai
 ;;(load-theme 'monokai t)
@@ -69,8 +69,8 @@
 ;;(set-face-attribute 'default nil :height 160)
 
 ;; Wombat
-(load-theme 'wombat t)
-(set-face-attribute 'default nil :height 160)
+;;(load-theme 'wombat t)
+;;(set-face-attribute 'default nil :height 160)
 
 
 

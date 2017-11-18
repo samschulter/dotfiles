@@ -5,11 +5,10 @@
 ;; https://blog.aaronbieber.com/2016/01/30/dig-into-org-mode.html
 ;; http://orgmode.org/worg/org-tutorials/org-custom-agenda-commands.html
 
-
 ;; - What about archiving?
 ;; - Encryption ... moving the org directory to boxcryptor does not help
 ;;   if we use mobile-org since this will make an unencrypted copy into
-;;   dropbox.
+;;   dropbox. => I never use org-mobile ... go for encryption
 
 
 ;;;
@@ -17,9 +16,9 @@
 ;;;
 
 ;; defines my custom state sequence
-;; (everything behind the pipe symbol "|" are considered as complete tasks)
-(setq org-todo-keywords '((sequence "TODO" "NEXT" "WAITING" "|" "DONE" "CANCELED")))
+(setq org-todo-keywords '((sequence "TODO" "NEXT" "TODAY" "|" "DONE" "CANCELED")))
 
+;; We might use this config somewhere where my tasks are not stored
 (if (file-exists-p "~/Dropbox/org/")
     (progn
        ;; path to all my task files
@@ -28,13 +27,6 @@
        (load-library "find-lisp")
        (setq org-agenda-files (find-lisp-find-files "~/Dropbox/org" "\.org$")))
   nil)
-;;;; path to all my task files
-;;(setq org-directory "~/Dropbox/org/")
-;;;;(setq org-agenda-files '("~/Dropbox/org/"))
-;;(load-library "find-lisp")
-;;(setq org-agenda-files (find-lisp-find-files "~/Dropbox/org" "\.org$"))
-
-
 
 
 
@@ -48,30 +40,24 @@
 
 ;; span of the agenda (show agenda from yesterday for 5 days)
 (setq org-agenda-start-on-weekday nil)
-;(setq org-agenda-start-day "-1d") # start "yesterday"
 (setq org-agenda-span 5)
 
 ;; remove scheduled DONE items in agenda
-;;(setq org-agenda-skip-scheduled-if-done t)
+(setq org-agenda-skip-scheduled-if-done t)
 
 (setq org-tags-match-list-sublevels 'indented)
 ;(setq org-agenda-todo-list-sublevels nil)
 ;(setq org-use-tag-inheritance nil)
 
-;;(setq org-agenda-custom-commands
-;;      '(("d" "My custom agenda view!"
-;;         ((agenda "")
-;;          (alltodo "")))))
 (setq org-agenda-custom-commands
       '(("d" "My custom agenda view!"
          (( agenda "" )
+          ( todo "TODAY" )
           ( todo "NEXT" )
-          ( todo "WAITING" )
-          ( alltodo "" ((org-agenda-skip-function '(org-agenda-skip-entry-if 'scheduled 'deadline)) (org-agenda-overriding-header "NON-SCHEDULE/DEADLINE ITEMS:")) )))
+          ( alltodo "" ((org-agenda-skip-function '(org-agenda-skip-entry-if 'scheduled 'deadline 'todo '("NEXT" "TODAY"))) (org-agenda-overriding-header "NON-SCHEDULE/DEADLINE ITEMS:")) )))
         ("w" "List of WAITING items"
          todo "WAITING")
         ))
-
 
 
 ;;;
@@ -93,6 +79,10 @@ SCHEDULED: %t")
         ("n" "NEXT format." entry
          (file "todos.org")
          "* NEXT %?")
+
+        ("t" "TODAY format." entry
+         (file "todos.org")
+         "* TODAY %?")
 
         ("d" "Deadline TODO format." entry
          (file "todos.org")
