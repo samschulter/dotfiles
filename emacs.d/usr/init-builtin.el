@@ -96,3 +96,8 @@
 ;; ace-window
 ;; easily switch between multiple windows
 (global-set-key (kbd "M-p") 'ace-window)
+
+;; CamelCase for forward-word and backward-word
+;; http://emacsredux.com/blog/2013/04/21/camelcase-aware-editing/
+(add-hook 'prog-mode-hook 'subword-mode)
+(add-hook 'org-mode-hook 'subword-mode)

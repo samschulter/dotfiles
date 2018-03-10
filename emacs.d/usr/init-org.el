@@ -10,9 +10,6 @@
 ;; http://orgmode.org/worg/org-tutorials/org-custom-agenda-commands.html
 
 ;; - Archiving?
-;; - Encryption ... moving the org directory to boxcryptor does not help
-;;   if we use mobile-org since this will make an unencrypted copy into
-;;   dropbox. => I never use org-mobile ... go for encryption
 
 
 ;;;
@@ -23,14 +20,15 @@
 (setq org-todo-keywords '((sequence "TODO" "NEXT" "TODAY" "|" "DONE" "CANCELED")))
 
 ;; We might use this config somewhere where my tasks are not stored
-(if (file-exists-p "~/Dropbox/org/")
+(if (file-exists-p "~/Boxcryptor/Dropbox/Data_encrypted/org/")
     (progn
        ;; path to all my task files
-       (setq org-directory "~/Dropbox/org/")
-       ;;(setq org-agenda-files '("~/Dropbox/org/"))
+       (setq org-directory "~/Boxcryptor/Dropbox/Data_encrypted/org/")
        (load-library "find-lisp")
-       (setq org-agenda-files (find-lisp-find-files "~/Dropbox/org" "\.org$")))
+       (setq org-agenda-files (find-lisp-find-files "~/Boxcryptor/Dropbox/Data_encrypted/org/" "\.org$")))
   nil)
+
+
 
 
 
@@ -107,38 +105,38 @@ DEADLINE: %t")
 ;;; https://mobileorg.github.io/documentation/
 
 ;; Set to the name of the file where new notes will be stored
-(setq org-mobile-inbox-for-pull "~/Dropbox/org/todos.org")
+;(setq org-mobile-inbox-for-pull "~/Dropbox/org/todos.org")
 ;; Set to <your Dropbox root directory>/MobileOrg.
-(setq org-mobile-directory "~/Dropbox/Apps/MobileOrg")
+;(setq org-mobile-directory "~/Dropbox/Apps/MobileOrg")
 
 ;; Auto-sync
 ;; https://stackoverflow.com/questions/8432108/how-to-automatically-do-org-mobile-push-org-mobile-pull-in-emacs
 ;; Run org-mobile-{pull,push} every time Emacs gets idle for my-org-mobile-sync-secs
-(defvar my-org-mobile-sync-secs (* 60 3))
+;(defvar my-org-mobile-sync-secs (* 60 3))
 
-(defvar my-org-mobile-sync-timer nil)
+;(defvar my-org-mobile-sync-timer nil)
 
-(defun my-org-mobile-sync-pull-and-push ()
-  (org-mobile-pull)
-  (org-mobile-push)
-  (message "org-mobile sync done")
-  )
+;(defun my-org-mobile-sync-pull-and-push ()
+;  (org-mobile-pull)
+;  (org-mobile-push)
+;  (message "org-mobile sync done")
+;  )
 
-(defun my-org-mobile-sync-start ()
-  "Start automated org-mobile syncing"
-  (interactive)
-  (setq my-org-mobile-sync-timer
-        (run-with-idle-timer my-org-mobile-sync-secs t
-                             'my-org-mobile-sync-pull-and-push)))
+;(defun my-org-mobile-sync-start ()
+;  "Start automated org-mobile syncing"
+;  (interactive)
+;  (setq my-org-mobile-sync-timer
+;        (run-with-idle-timer my-org-mobile-sync-secs t
+;                             'my-org-mobile-sync-pull-and-push)))
 
-(defun my-org-mobile-sync-stop ()
-  "Stop automated org-mobile syncing"
-  (interactive)
-  (cancel-timer my-org-mobile-sync-timer))
+;(defun my-org-mobile-sync-stop ()
+;  "Stop automated org-mobile syncing"
+;  (interactive)
+;  (cancel-timer my-org-mobile-sync-timer))
 
-(if (file-exists-p "~/Dropbox/org/")
-    (my-org-mobile-sync-start)
-  nil)
+;(if (file-exists-p "~/Dropbox/org/")
+;    (my-org-mobile-sync-start)
+;  nil)
 
 
 
