@@ -67,6 +67,9 @@
     hc-zenburn-theme
     monokai-theme
     leuven-theme
+    tango-plus-theme
+    tangotango-theme
+    github-modern-theme
   )
   "Packages which should be installed upon launch"
 )

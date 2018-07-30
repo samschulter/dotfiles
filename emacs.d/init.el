@@ -85,7 +85,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(powerline-active1 ((t (:foreground "#444444" :background "#a37af5" :box nil))))
+ '(powerline-active1 ((t (:foreground "#FFFFFF" :background "#2b73d8" :box nil))))
  '(powerline-active2 ((t (:foreground "#545049" :background "#ddd9d2" :box nil))))
- '(powerline-inactive1 ((t (:foreground "#666666" :background "#ffa826" :box nil))))
+ '(powerline-inactive1 ((t (:foreground "#bca0bb" :background "#ddd9d2" :box nil))))
  '(powerline-inactive2 ((t (:foreground "#bca0bb" :background "#ddd9d2" :box nil)))))

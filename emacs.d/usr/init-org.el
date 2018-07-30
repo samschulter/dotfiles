@@ -1,7 +1,6 @@
 ;;
 ;; org-mode environment
 ;;
-
 (require 'org)
 (require 'htmlize)
 
@@ -9,7 +8,11 @@
 ;; https://blog.aaronbieber.com/2016/01/30/dig-into-org-mode.html
 ;; http://orgmode.org/worg/org-tutorials/org-custom-agenda-commands.html
 
-;; - Archiving?
+
+;;;
+;;; Archiving
+;;;
+(setq org-archive-location "%s_archive::datetree/")
 
 
 ;;;
@@ -17,7 +20,8 @@
 ;;;
 
 ;; defines my custom state sequence
-(setq org-todo-keywords '((sequence "TODO" "NEXT" "TODAY" "|" "DONE" "CANCELED")))
+;(setq org-todo-keywords '((sequence "TODO" "NEXT" "TODAY" "WAIT" "|" "DONE" "CANCELED")))
+(setq org-todo-keywords '((sequence "TODO" "NEXT" "WAIT" "|" "DONE")))
 
 ;; We might use this config somewhere where my tasks are not stored
 (if (file-exists-p "~/Boxcryptor/Dropbox/Data_encrypted/org/")
@@ -54,13 +58,23 @@
 (setq org-agenda-custom-commands
       '(("d" "My custom agenda view!"
          (( agenda "" )
-          ( todo "TODAY" )
           ( todo "NEXT" )
-          ( alltodo "" ((org-agenda-skip-function '(org-agenda-skip-entry-if 'scheduled 'deadline 'todo '("NEXT" "TODAY"))) (org-agenda-overriding-header "NON-SCHEDULE/DEADLINE ITEMS:")) )))
-        ("w" "List of WAITING items"
-         todo "WAITING")
+          ( todo "WAIT" )
+          ( alltodo "" ((org-agenda-skip-function '(org-agenda-skip-entry-if 'scheduled 'deadline 'todo '("NEXT" "WAIT"))) (org-agenda-overriding-header "NON-SCHEDULE/DEADLINE ITEMS:")) )))
+        ("w" "List of WAIT items"
+         todo "WAIT")
+        ("r" "Closed items in the last 35 days"
+         agenda ""
+         ((org-agenda-start-day "-35d")
+          (org-agenda-span 35)
+          (org-agenda-start-on-weekday nil)
+          (org-agenda-start-with-log-mode t)
+          (org-agenda-skip-function
+           '(org-agenda-skip-entry-if 'nottodo 'done))
+          ))
         ))
-
+;( todo "TODAY" )
+;( alltodo "" ((org-agenda-skip-function '(org-agenda-skip-entry-if 'scheduled 'deadline 'todo '("NEXT" "TODAY" "WAIT"))) (org-agenda-overriding-header "NON-SCHEDULE/DEADLINE ITEMS:")) )
 
 ;;;
 ;;; Capture
@@ -207,12 +221,12 @@ DEADLINE: %t")
 
 ;; Don't let Monokai change the font sizes
 ;; https://emacs.stackexchange.com/questions/22584/disable-enlarged-org-mode-header-appearance
-(defun my/org-mode-hook ()
-  "Stop the org-level headers from increasing in height relative to the other text."
-  (dolist (face '(org-level-1
-                  org-level-2
-                  org-level-3
-                  org-level-4
-                  org-level-5))
-    (set-face-attribute face nil :weight 'semi-bold :height 1.0)))
-(add-hook 'org-mode-hook 'my/org-mode-hook)
+;;(defun my/org-mode-hook ()
+;;  "Stop the org-level headers from increasing in height relative to the other text."
+;;  (dolist (face '(org-level-1
+;;                  org-level-2
+;;                  org-level-3
+;;                  org-level-4
+;;                  org-level-5))
+;;    (set-face-attribute face nil :weight 'semi-bold :height 1.0)))
+;;(add-hook 'org-mode-hook 'my/org-mode-hook)

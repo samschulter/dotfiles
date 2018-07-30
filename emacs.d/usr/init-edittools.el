@@ -2,6 +2,22 @@
 ;; text - editing tools (multiple cursors, expand-region, etc.)
 ;;
 
+
+
+;; ==> This has some issues with the elpy mode and code-completion :/
+;; show a vertical line at the fill-column
+;; https://github.com/alpaker/Fill-Column-Indicator
+;; https://www.emacswiki.org/emacs/FillColumnIndicator
+;(add-to-list 'load-path "~/.emacs.d/vendor")
+;(require 'fill-column-indicator)
+;(setq fci-rule-width 1)
+;(setq fci-rule-color "darkblue")
+;; use 'fci-mode' to toggle the minor mode
+;; we add a hook for python code
+;(add-hook 'python-mode-hook 'fci-mode)
+
+
+
 ;; multiple cursors
 ;; https://github.com/magnars/multiple-cursors.el
 (require 'multiple-cursors)
