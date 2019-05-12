@@ -259,7 +259,7 @@
 ;;(set-face-attribute 'default nil :family "Menlo")
 
 ;; set a better font-size
-(set-face-attribute 'default nil :height 160)
+;;(set-face-attribute 'default nil :height 160)
 
 ;;
 ;; powerline -> Is there a better version now in Emacs 26.02?
