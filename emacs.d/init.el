@@ -18,6 +18,10 @@
 (setq exec-path (append exec-path '("/usr/local/bin")))
 (setenv "PATH" "/usr/local/bin:/Library/TeX/texbin/:$PATH" t)
 (setq exec-path (append exec-path '("/Library/TeX/texbin")))
+(setq exec-path (append exec-path '("/Users/samuel/Library/Python/3.6/bin"))) ;; for pylint
+
+;; https://emacs.stackexchange.com/questions/16492/is-it-possible-to-create-an-org-mode-scratch-buffer
+(setq initial-major-mode 'org-mode)
 
 
 (load-user-file "usr/packages.el")
@@ -72,20 +76,12 @@
 ;; highlight-changes-mode
 ;; http://emacs-fu.blogspot.com/2009/05/tracking-changes.html (we might only want to highlight the background color a bit?)
 ;; https://www.emacswiki.org/emacs/TrackChanges (we might want to remove the highlighting after saving the file)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (leuven-theme zenburn-theme yaml-mode xclip visual-fill-column smooth-scroll rfringe protobuf-mode org-bullets multiple-cursors monokai-theme markdown-mode json-mode htmlize helm-projectile helm-descbinds hc-zenburn-theme flycheck expand-region elpy auctex ace-window))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(powerline-active1 ((t (:foreground "#FFFFFF" :background "#2b73d8" :box nil))))
+ '(powerline-active1 ((t (:foreground "#444444" :background "#2b73d8" :box nil))))
  '(powerline-active2 ((t (:foreground "#545049" :background "#ddd9d2" :box nil))))
- '(powerline-inactive1 ((t (:foreground "#bca0bb" :background "#ddd9d2" :box nil))))
+ '(powerline-inactive1 ((t (:foreground "#666666" :background "#ffa826" :box nil))))
  '(powerline-inactive2 ((t (:foreground "#bca0bb" :background "#ddd9d2" :box nil)))))

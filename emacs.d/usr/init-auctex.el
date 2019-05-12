@@ -46,5 +46,7 @@
 ;; option -b highlights the current line; option -g opens Skim in the background
 ;; NOTE: activate auto-reload in Skim (under Properties/Sync)
 (setq TeX-view-program-selection '((output-pdf "PDF Viewer")))
+;;(setq TeX-view-program-list
+;;     '(("PDF Viewer" "/Applications/Skim.app/Contents/SharedSupport/displayline --no-wait -b -g %n %o %b")))
 (setq TeX-view-program-list
-     '(("PDF Viewer" "/Applications/Skim.app/Contents/SharedSupport/displayline -b -g %n %o %b")))
+     '(("PDF Viewer" "/Applications/Skim.app/Contents/SharedSupport/displayline --no-wait +%n %o")))

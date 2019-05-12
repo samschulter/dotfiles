@@ -32,7 +32,7 @@
 ;; x protobuf-mode
 ;; x elpy                                 ... python environment
 ;; x xclip                                ... copy and paste to X clipboard
-;;   yasnippet                            ... snippets
+;; x yasnippet                            ... snippets
 ;; x visual-fill-column                   ... wraps lines at fill column, not at the window edge (default)
 ;; x yaml-mode
 ;; x zenburn-theme
@@ -58,6 +58,7 @@
     popup
     projectile
     helm-projectile
+    helm-ag
     protobuf-mode
     elpy
     xclip
@@ -70,6 +71,11 @@
     tango-plus-theme
     tangotango-theme
     github-modern-theme
+    darktooth-theme
+    yasnippet
+    yasnippet-snippets
+    neotree
+    all-the-icons
   )
   "Packages which should be installed upon launch"
 )

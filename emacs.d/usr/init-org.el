@@ -28,8 +28,10 @@
     (progn
        ;; path to all my task files
        (setq org-directory "~/Boxcryptor/Dropbox/Data_encrypted/org/")
-       (load-library "find-lisp")
-       (setq org-agenda-files (find-lisp-find-files "~/Boxcryptor/Dropbox/Data_encrypted/org/" "\.org$")))
+       ;;(load-library "find-lisp")
+       ;;(setq org-agenda-files (find-lisp-find-files "~/Boxcryptor/Dropbox/Data_encrypted/org/" "\.org$"))
+      (add-to-list 'org-agenda-files (expand-file-name "~/Boxcryptor/Dropbox/Data_encrypted/org"))
+      )
   nil)
 
 
@@ -96,10 +98,6 @@ SCHEDULED: %t")
          (file "todos.org")
          "* NEXT %?")
 
-        ("t" "TODAY format." entry
-         (file "todos.org")
-         "* TODAY %?")
-
         ("d" "Deadline TODO format." entry
          (file "todos.org")
          "* TODO %?
@@ -109,7 +107,9 @@ DEADLINE: %t")
          (file "projects.org")
          "* %? :project:")))
 (define-key global-map (kbd "C-c c") 'org-capture)
-
+;("t" "TODAY format." entry
+;         (file "todos.org")
+;         "* TODAY %?")
 
 
 
@@ -190,11 +190,10 @@ DEADLINE: %t")
 
 ;; for org-refile:
 ;; https://blog.aaronbieber.com/2017/03/19/organizing-notes-with-refile.html
-(setq org-refile-targets '((org-agenda-files :maxlevel . 5)))
+(setq org-refile-targets '((org-agenda-files :maxlevel . 6)))
 
-
-
-
+;; spell checker for org-mode
+(add-hook 'org-mode-hook 'flyspell-mode)
 
 
 ;;;
@@ -206,8 +205,8 @@ DEADLINE: %t")
 (setq org-cycle-separator-lines 1)
 
 ;; nice bullet point icons
-(require 'org-bullets)
-(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+;(require 'org-bullets)
+;(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 
 ;; other ending icon for folded items
 (setq org-ellipsis " [->]")

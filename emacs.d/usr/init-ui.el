@@ -11,7 +11,8 @@
 ;;(load-theme 'leuven t)
 ;;(load-theme 'tango-plus t)
 ;;(load-theme 'tangotango t)
-(load-theme 'github-modern t)
+;;(load-theme 'github-modern t)
+(load-theme 'darktooth t)
 
 (set-face-attribute 'default nil :height 160)
 

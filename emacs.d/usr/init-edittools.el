@@ -51,7 +51,40 @@
 (if (display-graphic-p)
     (progn
       (elpy-enable)))
-(setq python-indent 2)
+(setq python-indent 4)
 
 
+; (require 'flycheck)
+; (global-flycheck-mode)
+; /Users/samuel/Library/Python/3.6/bin/pylint
 
+
+;; Snippets (only for coding modes)
+(yas-reload-all)
+;(add-hook 'prog-mode-hook #'yas-minor-mode)
+(add-hook 'python-mode-hook #'yas-minor-mode)
+
+
+;; NeoTree (file navigation)
+;; https://dev.to/deciduously/how-i-emacs-and-so-can-you-packages-m9p
+;; https://github.com/jaypei/emacs-neotree
+;; https://github.com/domtronn/all-the-icons.el
+(require 'all-the-icons)
+(require 'neotree)
+(setq neo-theme (if (display-graphic-p) 'icons 'arrow))
+
+(defun neotree-project-dir ()
+  "Open NeoTree using the git root."
+  (interactive)
+  (let ((project-dir (ffip-project-root))
+    (file-name (buffer-file-name)))
+    (if project-dir
+    (progn
+      (neotree-dir project-dir)
+      (neotree-find file-name))
+      (message "Could not find git project root."))))
+
+(provide 'bl-fns)
+
+;;(global-set-key [f8] 'neotree-project-dir)
+(global-set-key (kbd "C-c n") 'neotree-project-dir)

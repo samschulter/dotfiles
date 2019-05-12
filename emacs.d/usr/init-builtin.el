@@ -45,9 +45,9 @@
 
 ;; default indentation
 (setq-default indent-tabs-mode nil) ; no TAB for indent
-(setq-default tab-width 2)
-(setq sh-basic-offset 2)
-(setq sh-indentation 2)
+(setq-default tab-width 4)
+(setq sh-basic-offset 4)
+(setq sh-indentation 4)
 
 ;; highlights trailing whitespace
 (setq-default show-trailing-whitespace t)
@@ -81,11 +81,13 @@
 (electric-pair-mode 1)
 
 ;; spell checker - requires ispell to be installed
-(if (display-graphic-p)
-    (progn
-      (dolist (hook '(text-mode-hook))
-        (add-hook hook (lambda () (flyspell-mode 1)))))
-    )
+;;(if (display-graphic-p)
+;;    (progn
+;;      (dolist (hook '(text-mode-hook))
+;;        (add-hook hook (lambda () (flyspell-mode 1)))))
+;;    )
+(add-hook 'text-mode-hook 'flyspell-mode)
+
 
 ;; remembers last edit point when re-opening a file:
 ;; https://www.emacswiki.org/emacs/SavePlace
