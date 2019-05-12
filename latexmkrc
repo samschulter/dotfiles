@@ -1,3 +1,3 @@
-$pdflatex = '/usr/texbin//pdflatex -interaction=nonstopmode -synctex=1 %O %S';
-$pdf_previewer = 'open -a skim';
-$clean_ext = 'bbl rel %R-blx.bib %R.synctex.gz';
+$pdf_previewer = 'open -a Skim';
+$pdflatex = 'pdflatex -synctex=1 -interaction=nonstopmode';
+@generated_exts = (@generated_exts, 'synctex.gz');
