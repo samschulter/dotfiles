@@ -1,0 +1,33 @@
+;;
+;; Resources, documentation, things to try, etc.
+;;
+
+
+;;;; confis from others
+;; https://github.com/hrs/dotfiles/blob/master/emacs.d/configuration.org
+;; https://github.com/aaronbieber/dotfiles/tree/master/configs/emacs.d/lisp
+;; http://aaronbedra.com/emacs.d/
+;; https://github.com/magnars/.emacs.d
+
+;;;; blogs, etc.
+;; https://github.com/xiaohanyu/oh-my-emacs
+;; https://www.masteringemacs.org/article/effective-editing-movement
+;; https://www.youtube.com/watch?v=JWD1Fpdd4Pc
+;; http://pragmaticemacs.com/
+;; https://blog.aaronbieber.com/
+;; http://emacs.sexy/#resources
+;; https://github.com/emacs-tw/awesome-emacs
+
+;;;; Org mode:
+;; short guide: http://orgmode.org/orgguide.pdf
+;; More tutorials: http://orgmode.org/worg/org-tutorials/
+;; http://orgmode.org/orgcard.pdf (the cheatsheet)
+
+;;;; Fixes
+;; colors in GNU screen: https://stackoverflow.com/questions/11148321/how-to-preserve-emacs-colors-from-regular-terminal-to-gnu-screen
+
+;;;; Packages to try
+;; http://pragmaticemacs.com/emacs/easily-manage-emacs-workspaces-with-eyebrowse/
+;; highlight-changes-mode
+;; http://emacs-fu.blogspot.com/2009/05/tracking-changes.html (we might only want to highlight the background color a bit?)
+;; https://www.emacswiki.org/emacs/TrackChanges (we might want to remove the highlighting after saving the file)

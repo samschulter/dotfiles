@@ -2,6 +2,9 @@
 ;; LaTeX environment
 ;;
 
+(setenv "PATH" "/usr/local/bin:/Library/TeX/texbin/:$PATH" t)
+(setq exec-path (append exec-path '("/Library/TeX/texbin")))
+
 ;; Reference: http://www.stefanom.org/setting-up-a-nice-auctex-environment-on-mac-os-x/
 ;; NOTE: latex compiling and pdf viewing will only work on my local machine ...
 
@@ -18,7 +21,7 @@
 
 ;; activate visual-line-mode and visual-fill-column-mode
 (add-hook 'LaTeX-mode-hook 'visual-line-mode)
-(add-hook 'LaTeX-mode-hook 'visual-fill-column-mode)
+;(add-hook 'LaTeX-mode-hook 'visual-fill-column-mode)
 
 ;; activate RefTeX
 ;; It's awesome: https://www.gnu.org/software/emacs/manual/html_node/reftex/RefTeX-in-a-Nutshell.html
@@ -46,7 +49,5 @@
 ;; option -b highlights the current line; option -g opens Skim in the background
 ;; NOTE: activate auto-reload in Skim (under Properties/Sync)
 (setq TeX-view-program-selection '((output-pdf "PDF Viewer")))
-;;(setq TeX-view-program-list
-;;     '(("PDF Viewer" "/Applications/Skim.app/Contents/SharedSupport/displayline --no-wait -b -g %n %o %b")))
 (setq TeX-view-program-list
      '(("PDF Viewer" "/Applications/Skim.app/Contents/SharedSupport/displayline --no-wait +%n %o")))

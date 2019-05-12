@@ -20,7 +20,6 @@
 ;;;
 
 ;; defines my custom state sequence
-;(setq org-todo-keywords '((sequence "TODO" "NEXT" "TODAY" "WAIT" "|" "DONE" "CANCELED")))
 (setq org-todo-keywords '((sequence "TODO" "NEXT" "WAIT" "|" "DONE")))
 
 ;; We might use this config somewhere where my tasks are not stored
@@ -28,8 +27,6 @@
     (progn
        ;; path to all my task files
        (setq org-directory "~/Boxcryptor/Dropbox/Data_encrypted/org/")
-       ;;(load-library "find-lisp")
-       ;;(setq org-agenda-files (find-lisp-find-files "~/Boxcryptor/Dropbox/Data_encrypted/org/" "\.org$"))
       (add-to-list 'org-agenda-files (expand-file-name "~/Boxcryptor/Dropbox/Data_encrypted/org"))
       )
   nil)
@@ -54,8 +51,6 @@
 (setq org-agenda-skip-scheduled-if-done t)
 
 (setq org-tags-match-list-sublevels 'indented)
-;(setq org-agenda-todo-list-sublevels nil)
-;(setq org-use-tag-inheritance nil)
 
 (setq org-agenda-custom-commands
       '(("d" "My custom agenda view!"
@@ -75,8 +70,6 @@
            '(org-agenda-skip-entry-if 'nottodo 'done))
           ))
         ))
-;( todo "TODAY" )
-;( alltodo "" ((org-agenda-skip-function '(org-agenda-skip-entry-if 'scheduled 'deadline 'todo '("NEXT" "TODAY" "WAIT"))) (org-agenda-overriding-header "NON-SCHEDULE/DEADLINE ITEMS:")) )
 
 ;;;
 ;;; Capture
@@ -107,9 +100,6 @@ DEADLINE: %t")
          (file "projects.org")
          "* %? :project:")))
 (define-key global-map (kbd "C-c c") 'org-capture)
-;("t" "TODAY format." entry
-;         (file "todos.org")
-;         "* TODAY %?")
 
 
 
@@ -204,10 +194,6 @@ DEADLINE: %t")
 ;; https://www.reddit.com/r/orgmode/comments/3c4xdk/spacing_between_items_when_trees_are_folded/
 (setq org-cycle-separator-lines 1)
 
-;; nice bullet point icons
-;(require 'org-bullets)
-;(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
-
 ;; other ending icon for folded items
 (setq org-ellipsis " [->]")
 
@@ -215,7 +201,6 @@ DEADLINE: %t")
 (with-eval-after-load 'org
   (setq org-startup-indented t) ; Enables `org-indent-mode' by default
   (add-hook 'org-mode-hook 'visual-line-mode) ; proper text warping
-  ;(add-hook 'org-mode-hook 'visual-fill-column-mode) ; warps text at fill-column
   )
 
 ;; Don't let Monokai change the font sizes
