@@ -33,8 +33,6 @@
 
 
 
-
-
 ;;;
 ;;; Agenda
 ;;;
@@ -49,6 +47,7 @@
 
 ;; remove scheduled DONE items in agenda
 (setq org-agenda-skip-scheduled-if-done t)
+(setq org-agenda-skip-deadline-if-done t)
 
 (setq org-tags-match-list-sublevels 'indented)
 
@@ -103,47 +102,6 @@ DEADLINE: %t")
 
 
 
-;;;
-;;; Mobile org
-;;;
-;;; https://mobileorg.github.io/documentation/
-
-;; Set to the name of the file where new notes will be stored
-;(setq org-mobile-inbox-for-pull "~/Dropbox/org/todos.org")
-;; Set to <your Dropbox root directory>/MobileOrg.
-;(setq org-mobile-directory "~/Dropbox/Apps/MobileOrg")
-
-;; Auto-sync
-;; https://stackoverflow.com/questions/8432108/how-to-automatically-do-org-mobile-push-org-mobile-pull-in-emacs
-;; Run org-mobile-{pull,push} every time Emacs gets idle for my-org-mobile-sync-secs
-;(defvar my-org-mobile-sync-secs (* 60 3))
-
-;(defvar my-org-mobile-sync-timer nil)
-
-;(defun my-org-mobile-sync-pull-and-push ()
-;  (org-mobile-pull)
-;  (org-mobile-push)
-;  (message "org-mobile sync done")
-;  )
-
-;(defun my-org-mobile-sync-start ()
-;  "Start automated org-mobile syncing"
-;  (interactive)
-;  (setq my-org-mobile-sync-timer
-;        (run-with-idle-timer my-org-mobile-sync-secs t
-;                             'my-org-mobile-sync-pull-and-push)))
-
-;(defun my-org-mobile-sync-stop ()
-;  "Stop automated org-mobile syncing"
-;  (interactive)
-;  (cancel-timer my-org-mobile-sync-timer))
-
-;(if (file-exists-p "~/Dropbox/org/")
-;    (my-org-mobile-sync-start)
-;  nil)
-
-
-
 
 ;;;
 ;;; Tweaks
@@ -195,7 +153,7 @@ DEADLINE: %t")
 (setq org-cycle-separator-lines 1)
 
 ;; other ending icon for folded items
-(setq org-ellipsis " [->]")
+(setq org-ellipsis " [...]")
 
 ;; proper text display
 (with-eval-after-load 'org
@@ -203,14 +161,7 @@ DEADLINE: %t")
   (add-hook 'org-mode-hook 'visual-line-mode) ; proper text warping
   )
 
-;; Don't let Monokai change the font sizes
-;; https://emacs.stackexchange.com/questions/22584/disable-enlarged-org-mode-header-appearance
-;;(defun my/org-mode-hook ()
-;;  "Stop the org-level headers from increasing in height relative to the other text."
-;;  (dolist (face '(org-level-1
-;;                  org-level-2
-;;                  org-level-3
-;;                  org-level-4
-;;                  org-level-5))
-;;    (set-face-attribute face nil :weight 'semi-bold :height 1.0)))
-;;(add-hook 'org-mode-hook 'my/org-mode-hook)
+;; Github-style markdown exporter for org
+;; https://github.com/larstvei/ox-gfm
+(eval-after-load "org"
+  '(require 'ox-gfm nil t))
