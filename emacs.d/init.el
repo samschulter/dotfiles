@@ -6,11 +6,14 @@
 (load-user-file "usr/init-ui.el")
 (load-user-file "usr/init-basics.el")
 (load-user-file "usr/init-editing.el")
-(load-user-file "usr/init-org.el")
+(if (display-graphic-p)
+    (progn
+      (load-user-file "usr/init-org.el")))
 (if (display-graphic-p)
     (progn
       (load-user-file "usr/init-auctex.el")))
 
 
 ;; ???
-;;(put 'dired-find-alternate-file 'disabled nil)
+(put 'upcase-region 'disabled nil)
+(put 'dired-find-alternate-file 'disabled nil)

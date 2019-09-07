@@ -29,6 +29,7 @@
 ;; x org                                  ... magic org-mode
 ;; x ox-gfm                               ... github flavored markdown exporter for org mode (https://github.com/larstvei/ox-gfm)
 ;; x projectile                           ... project management within emacs
+;; x todoist                              ... TODO list from todoist.com
 ;; x yaml-mode
 ;; x yasnippet                            ... snippets for X (e.g., python)
 ;; x yasnippet-snippets                   ... collection of pre-defined snippets
@@ -58,6 +59,7 @@
     org
     ox-gfm
     projectile
+    todoist
     yaml-mode
     yasnippet
     yasnippet-snippets

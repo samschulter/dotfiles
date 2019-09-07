@@ -165,3 +165,12 @@ DEADLINE: %t")
 ;; https://github.com/larstvei/ox-gfm
 (eval-after-load "org"
   '(require 'ox-gfm nil t))
+
+
+
+;;
+;; todoist.com integration
+;;
+(require 'todoist)
+(setq todoist-token "40dbe75129b24c147abf5780c7156926addc6c8e")
+(setq url-mime-encoding-string "identity")
