@@ -115,7 +115,7 @@
 ;; https://github.com/python/black
 ;; blacken: https://github.com/proofit404/blacken/blob/master/blacken.el
 ;; Installation: 'Add blacken.el to your load-path.'
-(add-to-list 'load-path "~/opt/blacken")
+(add-to-list 'load-path "~/.emacs.d/vendor/blacken")
 (require 'blacken)
 ;; make sure you have 'black' installed: pip install black
 ;; To run 'black' automatically before saving, add this:
