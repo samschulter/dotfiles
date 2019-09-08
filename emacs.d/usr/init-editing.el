@@ -84,9 +84,10 @@
 ;; elpy: python environment
 ;; source: https://github.com/jorgenschaefer/elpy
 ;;
-(if (display-graphic-p)
-    (progn
-      (elpy-enable)))
+;;(if (display-graphic-p)
+;;    (progn
+;;      (elpy-enable)))
+(elpy-enable)
 (setq python-indent 4)
 
 ;; This would be required for pylint!

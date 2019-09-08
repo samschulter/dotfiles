@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: ipdb trace single-line (blacken.el safe)
+# key: itrs
+# group: debug
+# --
+__import__("ipdb").set_trace()  # FIXME
