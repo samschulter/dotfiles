@@ -51,3 +51,11 @@
 (setq TeX-view-program-selection '((output-pdf "PDF Viewer")))
 (setq TeX-view-program-list
      '(("PDF Viewer" "/Applications/Skim.app/Contents/SharedSupport/displayline --no-wait +%n %o")))
+
+
+;; helm bibtex (https://github.com/tmalsburg/helm-bibtex)
+(autoload 'helm-bibtex "helm-bibtex" "" t)
+(require 'helm-bibtex)
+(global-set-key (kbd "C-x p") 'helm-bibtex-with-local-bibliography)
+(helm-delete-action-from-source "Insert BibTeX key" helm-source-bibtex)
+(helm-add-action-to-source "Insert BibTeX key" 'helm-bibtex-insert-key helm-source-bibtex 0)

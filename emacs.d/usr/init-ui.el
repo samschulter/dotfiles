@@ -10,7 +10,8 @@
 ;; Load the theme (doom-one, doom-molokai, etc); keep in mind that each theme
 ;; may have their own settings.
 ;;(load-theme 'doom-one t)
-(load-theme 'doom-molokai t)
+;;(load-theme 'doom-molokai t)
+(load-theme 'doom-opera-light t)
 ;; Enable flashing mode-line on errors
 (doom-themes-visual-bell-config)
 ;; Corrects (and improves) org-mode's native fontification.

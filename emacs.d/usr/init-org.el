@@ -23,11 +23,11 @@
 (setq org-todo-keywords '((sequence "TODO" "NEXT" "WAIT" "|" "DONE")))
 
 ;; We might use this config somewhere where my tasks are not stored
-(if (file-exists-p "~/Boxcryptor/Dropbox/Data_encrypted/org/")
+(if (file-exists-p "~/Boxcryptor/Dropbox/data_encrypted/org/")
     (progn
        ;; path to all my task files
-       (setq org-directory "~/Boxcryptor/Dropbox/Data_encrypted/org/")
-      (add-to-list 'org-agenda-files (expand-file-name "~/Boxcryptor/Dropbox/Data_encrypted/org"))
+       (setq org-directory "~/Boxcryptor/Dropbox/data_encrypted/org/")
+      (add-to-list 'org-agenda-files (expand-file-name "~/Boxcryptor/Dropbox/data_encrypted/org"))
       )
   nil)
 

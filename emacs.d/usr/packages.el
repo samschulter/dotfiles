@@ -20,11 +20,13 @@
 ;; x flycheck                             ... spell checker
 ;; x helm                                 ... navigation magic
 ;; x helm-ag                              ... the silver-surfer within emacs and helm
+;; x helm-bibtex                          ... use helm to search bibtex files (https://github.com/tmalsburg/helm-bibtex)
 ;; x helm-projectile                      ... projectile integration into helm
 ;; x htmlize                              ... export to HTML in org-mode
 ;; x json-mode
 ;; x magit                                ... Git magic ...
-;; x markdown-mode
+;; x markdown-mode                        ... https://github.com/defunkt/markdown-mode
+;; x markdown-preview-mode                ... https://github.com/ancane/markdown-preview-mode
 ;; x multiple-cursors                     ... get multiple cursors
 ;; x org                                  ... magic org-mode
 ;; x ox-gfm                               ... github flavored markdown exporter for org mode (https://github.com/larstvei/ox-gfm)
@@ -50,11 +52,13 @@
     flycheck
     helm
     helm-ag
+    helm-bibtex
     helm-projectile
     htmlize
     json-mode
     magit
     markdown-mode
+    markdown-preview-mode
     multiple-cursors
     org
     ox-gfm
