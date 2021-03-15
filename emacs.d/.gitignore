@@ -4,8 +4,12 @@ backup_files
 bookmarks
 custom.el
 elpa
+elpy
 eshell
+games
 helm-adaptive-history
+journal
+org-journal.cache
 projectile.cache
 projectile-bookmarks.eld
 recentf
