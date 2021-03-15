@@ -20,11 +20,11 @@
 ;;;
 
 ;; custom todo state sequence
-(setq org-todo-keywords '((sequence "TODO" "|" "DONE" "CANCELLED")))
+(setq org-todo-keywords '((sequence "NEXT" "TODO" "WAIT" "BACKLOG" "|" "DONE" "CANCELLED")))
 
 ;; path to all my task files
-;;(setq org-directory "~/.emacs.d/todos")
-;;(add-to-list 'org-agenda-files (expand-file-name "~/.emacs.d/todos"))
+(setq org-directory "~/.emacs.d/todos")
+(add-to-list 'org-agenda-files (expand-file-name "~/.emacs.d/todos"))
 
 
 ;;;
@@ -32,27 +32,29 @@
 ;;;
 
 ;; global key to open the agenda
-;;(define-key global-map (kbd "C-c a") 'org-agenda)
-;;(setq org-agenda-window-setup 'current-window)
+(define-key global-map (kbd "C-c a") 'org-agenda)
+(setq org-agenda-window-setup 'current-window)
 
 ;; span of the agenda (show agenda from yesterday for 5 days)
-;;(setq org-agenda-start-on-weekday nil)
-;;(setq org-agenda-span 5)
+(setq org-agenda-start-on-weekday nil)
+(setq org-agenda-span 5)
 
 ;; remove scheduled DONE items in agenda
-;;(setq org-agenda-skip-scheduled-if-done t)
-;;(setq org-agenda-skip-deadline-if-done t)
+(setq org-agenda-skip-scheduled-if-done t)
+(setq org-agenda-skip-deadline-if-done t)
 
-;;(setq org-tags-match-list-sublevels 'indented)
+(setq org-tags-match-list-sublevels 'indented)
 
+;; Old agenda view with calendar
 ;;(setq org-agenda-custom-commands
-;;      '(("d" "Custom agenda view"
-;;         (( todo "NEXT" )
-;;          ( todo "TODO" )
-;;          ( todo "WAIT" )))
-;;        ("b" "Backlog"
-;;         todo "BACKLOG")
-;;        ("r" "Closed in last 35 days"
+;;      '(("d" "My custom agenda view!"
+;;         (( agenda "" )
+;;          ( todo "NEXT" )
+;;          ( todo "WAIT" )
+;;          ( alltodo "" ((org-agenda-skip-function '(org-agenda-skip-entry-if 'scheduled 'deadline 'todo '("NEXT" "WAIT"))) (org-agenda-overriding-header "NON-SCHEDULE/DEADLINE ITEMS:")) )))
+;;        ("w" "List of WAIT items"
+;;         todo "WAIT")
+;;        ("r" "Closed items in the last 35 days"
 ;;         agenda ""
 ;;         ((org-agenda-start-day "-35d")
 ;;          (org-agenda-span 35)
@@ -63,6 +65,24 @@
 ;;          ))
 ;;        ))
 
+(setq org-agenda-custom-commands
+      '(("d" "Custom agenda view"
+         (( todo "NEXT" )
+          ( todo "TODO" )
+          ( todo "WAIT" )))
+        ("b" "Backlog"
+         todo "BACKLOG")
+        ("r" "Closed in last 35 days"
+         agenda ""
+         ((org-agenda-start-day "-35d")
+          (org-agenda-span 35)
+          (org-agenda-start-on-weekday nil)
+          (org-agenda-start-with-log-mode t)
+          (org-agenda-skip-function
+           '(org-agenda-skip-entry-if 'nottodo 'done))
+          ))
+        ))
+
 
 ;;;
 ;;; Capture
@@ -70,16 +90,27 @@
 
 ;; defines a single template and wraps the selection of it in the capture buffer
 ;; https://blog.aaronbieber.com/2016/01/30/dig-into-org-mode.html
-;;(setq org-capture-templates
-;;      '(("a" "TODO format." entry
-;;         (file "todos.org")
-;;         "* TODO %?")
-;;
-;;        ("b" "BACKLOG format." entry
-;;         (file "todos.org")
-;;         "* BACKLOG %?")))
+(setq org-capture-templates
+      '(("a" "TODO format." entry
+         (file "todos.org")
+         "* TODO %?")
 
-;;(define-key global-map (kbd "C-c c") 'org-capture)
+        ("b" "BACKLOG format." entry
+         (file "todos.org")
+         "* BACKLOG %?")))
+
+;; Capture templates previously used
+;;        ("s" "Scheduled TODO format." entry
+;;         (file "todos.org")
+;;         "* TODO %?
+;;SCHEDULED: %t")
+;;
+;;        ("d" "Deadline TODO format." entry
+;;         (file "todos.org")
+;;         "* TODO %?
+;;DEADLINE: %t")
+
+(define-key global-map (kbd "C-c c") 'org-capture)
 
 
 ;;;
@@ -152,10 +183,6 @@
 (customize-set-variable 'org-journal-file-type 'yearly)
 (require 'org-journal)
 (global-set-key (kbd "C-x C-j") 'org-journal-new-entry)
-;; This does not work ...
-;;(add-hook 'org-journal-hook (lambda ()
-;;  (local-set-key "C-c C-b" 'org-backward-heading-same-level)
-;;  (local-set-key "C-c C-f" 'org-forward-heading-same-level)))
 
 ;; This almost works ... but find-file does open a dired buffer instead of the file ...
 ;;(defun get-current-journal-file ()
