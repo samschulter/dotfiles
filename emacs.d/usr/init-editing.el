@@ -77,25 +77,13 @@
   )
 ;; After expand-region, region-marking doesn't work anymore (i.e., C-SPC)
 ;; fix?: https://github.com/magnars/expand-region.el/issues/220
-;(setq shift-select-mode nil)
+;;(setq shift-select-mode nil)
 
-
-;;
-;; elpy: python environment
-;; source: https://github.com/jorgenschaefer/elpy
-;;
-;;(if (display-graphic-p)
-;;    (progn
-;;      (elpy-enable)))
-(elpy-enable)
-(setq python-indent 4)
-
-;; This would be required for pylint!
-;(setq exec-path (append exec-path '("/Users/samuel/Library/Python/3.6/bin"))) ;; for pylint
 
 ;;
 ;; Snippets (only for coding modes)
 ;;
+(require 'yasnippet)
 (yas-reload-all)
 ;(add-hook 'prog-mode-hook #'yas-minor-mode)
 (add-hook 'python-mode-hook #'yas-minor-mode)
@@ -110,24 +98,13 @@
 (add-to-list 'auto-mode-alist '("\\.capnp\\'" . capnp-mode))
 
 
-;; blacken - Python formatting
 ;;
-;; https://github.com/python/black
-;; blacken: https://github.com/proofit404/blacken/blob/master/blacken.el
-;; Installation: 'Add blacken.el to your load-path.'
-(add-to-list 'load-path "~/.emacs.d/vendor/blacken")
-(require 'blacken)
-;; make sure you have 'black' installed: pip install black
-;; To run 'black' automatically before saving, add this:
-(add-hook 'python-mode-hook 'blacken-mode)
-
-
 ;; highlight indentation
 ;; https://github.com/antonj/Highlight-Indentation-for-Emacs
+;;
 ;;(add-to-list 'load-path "~/.emacs.d/vendor")
 ;;;(add-hook 'python-mode-hook 'highlight-indentation-mode)
 ;;(add-hook 'python-mode-hook 'highlight-indentation-current-column-mode)
-
 
 
 ;;

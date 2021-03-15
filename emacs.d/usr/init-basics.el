@@ -5,11 +5,6 @@
 ;; set default fill column (e.g., used in AucTeX mode)
 (setq-default fill-column 80)
 
-;; adds line numbers on the left side of the buffer
-;;(when (version<= "26.0.50" emacs-version )
-;;  (global-display-line-numbers-mode))
-
-
 ;; downgrades important questions (yes/no) to (y/n)
 (fset 'yes-or-no-p 'y-or-n-p)
 

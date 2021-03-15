@@ -6,13 +6,11 @@
 (load-user-file "usr/init-ui.el")
 (load-user-file "usr/init-basics.el")
 (load-user-file "usr/init-editing.el")
+(load-user-file "usr/init-python.el")
 (if (display-graphic-p)
     (progn
-      (load-user-file "usr/init-org.el")))
-(if (display-graphic-p)
-    (progn
+      (load-user-file "usr/init-org.el")
       (load-user-file "usr/init-auctex.el")))
-
 
 ;; ???
 (put 'upcase-region 'disabled nil)
