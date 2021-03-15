@@ -1,0 +1,8 @@
+#
+# A definition of various alias to make my life easier.
+#
+# To use them, simply put 'source path/to/this/file' into your bash/zsh profile.
+#
+
+alias l="ls -lah"
+alias hn="hostname"
