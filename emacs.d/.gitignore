@@ -3,7 +3,6 @@ auto-save-list
 backup_files
 bookmarks
 custom.el
-elpa
 elpy
 eshell
 games
@@ -14,7 +13,8 @@ projectile.cache
 projectile-bookmarks.eld
 recentf
 saveplace-history
-.mc-lists.el
-.org-id-locations
+straight
 transient
 tramp
+.mc-lists.el
+.org-id-locations

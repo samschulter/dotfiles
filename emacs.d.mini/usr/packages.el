@@ -1,14 +1,5 @@
-(require 'package)
-
 ;; Save customizations in this file rather than messing up my init.el file.
 (setq custom-file "~/.emacs.d/custom.el")
-
-(setq package-archives
-      '(("gnu" . "http://elpa.gnu.org/packages/")
-        ("melpa" . "http://melpa.org/packages/")
-        ("org" . "http://orgmode.org/elpa/")
-        ("elpy" . "http://jorgenschaefer.github.io/packages/")))
-(package-initialize)
 
 ;; define the packages and themes that should actually be installed
 (defvar required-packages '(
@@ -28,6 +19,4 @@
 
 ;; actually install the packages
 (dolist (p required-packages)
-  (when (not (package-installed-p p))
-    (package-refresh-contents)
-    (package-install p)))
+  (straight-use-package p))
