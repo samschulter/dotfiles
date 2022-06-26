@@ -145,3 +145,39 @@
   </script>
 "))
 (setq markdown-command "multimarkdown")
+
+
+
+;; Combobulate ...
+;; https://github.com/mickeynp/combobulate
+;; ... need a better way to install this
+(require 'package)  ;; Emacs builtin
+(add-to-list 'package-archives
+             '("melpa" . "https://melpa.org/packages/") t)
+(add-to-list 'package-archives
+             '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+(package-initialize)  ;; initialize built-in package management
+;; update packages list if we are on a new install
+;; Note ... Idk why but unless package-archive-contents returns false,
+;;          hence had to do those two steps manually at some point
+(unless package-archive-contents
+  (package-refresh-contents)
+  (package-install 'use-package))
+(require 'use-package)
+;; Tree-sitter required ... can also be installed with straight:
+;; https://emacs-tree-sitter.github.io/installation/
+;; Did the two things manually again
+;; (package-install 'tree-sitter)
+;; (package-install 'tree-sitter-langs)
+;; (package-install 'hydra)
+;; (package-install 'avy)
+(require 'tree-sitter)
+(require 'tree-sitter-langs)
+(require 'hydra)
+(require 'avy)
+(use-package combobulate
+  ;; Ensure `combobulate-mode` is activated when you launch a mode it supports
+  :hook ((python-mode . combobulate-mode)
+         (js-mode . combobulate-mode)
+         (typescript-mode . combobulate-mode))
+  :load-path "/Users/samuel/work/opt/combobulate")

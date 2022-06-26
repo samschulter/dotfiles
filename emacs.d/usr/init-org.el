@@ -103,7 +103,9 @@
   (local-set-key (kbd "M-S-h") 'org-promote-subtree)
   (local-set-key (kbd "M-S-s") 'org-demote-subtree)
   (local-set-key "\M-t" 'org-metadown)
-  (local-set-key "\M-n" 'org-metaup)))
+  (local-set-key "\M-n" 'org-metaup)
+  (local-set-key (kbd "RET") 'org-return-and-maybe-indent)
+  (local-set-key (kbd "<C-return>") 'org-meta-return)))
 
 ;; when embedding source code, apply proper font styles
 (setq org-src-fontify-natively t)

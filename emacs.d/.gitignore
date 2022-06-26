@@ -3,6 +3,7 @@ auto-save-list
 backup_files
 bookmarks
 custom.el
+elpa
 elpy
 eshell
 games
@@ -16,5 +17,6 @@ saveplace-history
 straight
 transient
 tramp
+url
 .mc-lists.el
 .org-id-locations

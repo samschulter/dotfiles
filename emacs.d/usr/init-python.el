@@ -7,7 +7,7 @@
 ;;
 (if (display-graphic-p)
     (progn
-      (setq python-shell-interpreter "~/work/opt/anaconda3/bin/python")))
+      (setq python-shell-interpreter "~/work/opt/miniconda3/bin/python")))
 ;;(setq python-shell-interpreter "~/work/opt/anaconda3/bin/python")
 
 
@@ -16,7 +16,8 @@
 ;; source: https://github.com/jorgenschaefer/elpy
 ;;
 (elpy-enable)
-(setq exec-path (append exec-path '("~/Library/Python/2.7/bin"))) ;; for virutalenv in elpy
+;;(setq exec-path (append exec-path '("~/Library/Python/2.7/bin"))) ;; for virutalenv in elpy
+(setq exec-path (append exec-path '("~/work/opt/miniconda3/bin/python"))) ;; for virutalenv in elpy
 
 
 ;;
@@ -30,7 +31,8 @@
   (add-hook 'elpy-mode-hook 'flycheck-mode)
   ;; Only check the buffer when it was saved
   (setq flycheck-check-syntax-automatically '(mode-enabled save))
-  (setq flycheck-python-flake8-executable "flake8"))
+  ;;(setq flycheck-python-flake8-executable "flake8"))
+  (setq flycheck-python-flake8-executable "/Users/samuel/work/opt/miniconda3/bin/flake8"))
 
 (setq python-indent 4)
 
