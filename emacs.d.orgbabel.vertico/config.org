@@ -678,7 +678,7 @@ Show change information from git with [[https://github.com/emacsorphanage/git-gu
 
 * Completion: vertico/orderless/consult/marginalia
 
-We previously had: =ivy=, =counsel=, =swiper=, =all-the-icons-ivy=, and =ivy-rich=.  After watching the video of Mike Zamansky (https://www.youtube.com/watch?v=5ffb2at2d7w), I'm trying =vertico= with =orderless=, =consult=, =embark= and =marginalia=.
+We previously had: =ivy=, =counsel=, =swiper=, =all-the-icons-ivy=, and =ivy-rich=.  After watching the video of Mike Zamansky (https://www.youtube.com/watch?v=5ffb2at2d7w), I'm trying =vertico= with =orderless=, =consult=, =embark= and =marginalia=. More resources on this setup are [[https://www.youtube.com/watch?v=QBvGa0Yg1NI][here]] and [[https://systemcrafters.cc/live-streams/may-21-2021][here]].
 
 - =vertico= is only the completion framework in the minibuffer. It uses the default emacs interface (different in =ivy= or =helm=) making it easy to mix and match with other packages.
 - =orderless= is a matching framework
@@ -692,8 +692,8 @@ Now =vertico= + =orderless= replace =ivy=. =consult= replaces =counsel=. =margin
   - +The find-files cmd should use alphabetic sorting+
   - +In find-files, I want the "C-j" and "C-l" commands back, i.e., "word-back" and "C-j" doing the same as "TAB"+
   - For alphabetic sorting, I think it would be better if it does not care about upper/lower case
-  - Something is now wrong with org-journal: "Overwriting value of ‘org-tab-first-hook’ by aliasing to ‘org-cycle-tab-first-hook’"?
-  - The search is not so great yet I guess? I don't have the "search-at-point" function. Also, the search would not open org headings. What do other vertico users do for search? Do they just use standard isearch?
+  - I'm missing the "search-at-point" function
+  - Also, =consult-at-line= does not "open" (or unfold) org headings
 
 ** vertico & orderless
 
@@ -1060,24 +1060,17 @@ Description of =markdown-mode= is [[https://jblevins.org/projects/markdown-mode/
 - For vterm: https://github.com/akermu/emacs-libvterm
 - Fish (https://fishshell.com) ... okay, that's a shell, like =bash= or =zsh= I guess
   - Use fish and iterm2 together: https://lobster1234.github.io/2017/04/08/setting-up-fish-and-iterm2/
-  - - https://github.com/Ambrevar/emacs-fish-completion
-
+  - https://github.com/Ambrevar/emacs-fish-completion
+- Warp:
+  - There is still the issue in the whitespace in the prompt when inside a git repository
+  - No meta-b for backward word is working inside ipdb
+  - fuzzy search is not working for directories ... https://github.com/warpdotdev/Warp/issues/149
 
 
 * NEXT
-- Use =vertico=, =consult=? https://systemcrafters.cc/live-streams/may-21-2021/ - checkout the video https://www.youtube.com/watch?v=5ffb2at2d7w from Mike Zamansky - marginalia: https://github.com/minad/marginalia - what about the ordering; last used for everything except find-files?? Or what about this video? https://www.youtube.com/watch?v=QBvGa0Yg1NI
 - Take a look at registers: https://www.gnu.org/software/emacs/manual/html_node/emacs/Registers.html; Plus, =consult= has features for that: https://www.gnu.org/software/emacs/manual/html_node/emacs/Registers.html
 - Also, I didn't know there is a mark "register" ... https://www.emacswiki.org/emacs/Mark#mark
 - Use ripgrep? https://github.com/BurntSushi/ripgrep
-- Terminal!!! vterm - there are some videos on youtube to checkout ... but can this compete with =fish=-shell? ... well, or can it compete with zsh + Warp?
-  - # Try without zsh and w/o oh-my-zsh ... the issue with the empty space in the prompt when inside git repo needs fixing
-  - No meta-b for backward word is working inside ipdb
-  - fuzzy search is not working for directories ... https://github.com/warpdotdev/Warp/issues/149
-- =ivy/swiper/counsel= issues:
-  - Actually, it would be good to have prescient for =M-x=
-  - =C-l= should be the same =backspace= to go back a folder   - ivy-minibuffer-map ivy-delete-backward-char ... yeah, but how would I get the behavior of =<backspace>= that I want? - https://github.com/abo-abo/swiper/issues/1424
-  - When searching, it's a little strange that when there are multiple hits in the same line that I have to press =C-n= multiple times to jump to the next line in the search list ...
-- The projectile hydra shortcuts are not great, the ones with =<super>= I think
 - Take a look at org-roam: https://www.orgroam.com; is this something I want to use?
 - Watch video on dired from system crafters. Someone also mentioned this: https://github.com/ralesi/ranger.el, https://ranger.github.io ...
 - Should we do hydras for org-mode and markdown-mode?
@@ -1085,7 +1078,6 @@ Description of =markdown-mode= is [[https://jblevins.org/projects/markdown-mode/
 - I think we should go through all packages anyway and see how to best configure them
 - The automatic on-save fk/tangle is not working
 - =telephone-line= makes org-journal slow whenever I want to add something about the project name
-
 
 - +Maybe =eglot= instead of =lsp-mode=? https://www.youtube.com/watch?v=ROnceqt3kpE&t=56s+
   - +https://ddavis.io/posts/eglot-python-ide/+
