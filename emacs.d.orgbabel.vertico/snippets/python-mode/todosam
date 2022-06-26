@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: todosam
+# key: ts
+# --
+`comment-start`TODO(sam): $0`comment-end`

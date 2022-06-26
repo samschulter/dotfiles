@@ -1,0 +1,11 @@
+.lsp-session-v1
+.mc-lists.el
+auto-backup-files
+auto-save-list
+config.el
+history
+journal
+projectile-bookmarks.eld
+recentf
+straight
+transient
