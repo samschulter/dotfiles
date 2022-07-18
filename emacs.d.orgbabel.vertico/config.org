@@ -691,9 +691,9 @@ Now =vertico= + =orderless= replace =ivy=. =consult= replaces =counsel=. =margin
 - What is missing now that I had earlier? Or what does not work?
   - +The find-files cmd should use alphabetic sorting+
   - +In find-files, I want the "C-j" and "C-l" commands back, i.e., "word-back" and "C-j" doing the same as "TAB"+
+  - +Also, =consult-at-line= does not "open" (or unfold) org headings > I think setting =org-fold-core-style= to =overlays= instead of =text-properties= helps, see https://github.com/minad/consult/issues/563+
+  - I'm missing the "search-at-point" function > One can run =M-n= inside the minibuffer to add point into minibuffer ... hm, but for =consult-line= it would be cool to insert only the word at point with =M-n=, not the whole line ...
   - For alphabetic sorting, I think it would be better if it does not care about upper/lower case
-  - I'm missing the "search-at-point" function
-  - Also, =consult-at-line= does not "open" (or unfold) org headings
 
 ** vertico & orderless
 
@@ -801,6 +801,8 @@ Let's define a =hydra= with functions from =consult=
          ("M-y" . consult-yank-pop)
          ("M-g M-g" . consult-goto-line)
          ("C-s" . consult-line))
+  :init
+  (setq org-fold-core-style 'overlays)
   :config
   ;; For some commands and buffer sources it is useful to configure the
   ;; :preview-key on a per-command basis using the `consult-customize' macro.
@@ -973,7 +975,7 @@ Now we use [[https://github.com/emacs-lsp/lsp-mode][lsp-mode]] gives eldoc, comp
 (use-package lsp-mode
   :ensure t
   :init
-  (setq lsp-keymap-prefix "C-c u")
+  (setq lsp-keymap-prefix "C-c u")  ;; This is the entry point to many lsp functions!
   :hook
   (lsp-mode . lsp-enable-which-key-integration)
   :config
@@ -1071,14 +1073,15 @@ Description of =markdown-mode= is [[https://jblevins.org/projects/markdown-mode/
 - Take a look at registers: https://www.gnu.org/software/emacs/manual/html_node/emacs/Registers.html; Plus, =consult= has features for that: https://www.gnu.org/software/emacs/manual/html_node/emacs/Registers.html
 - Also, I didn't know there is a mark "register" ... https://www.emacswiki.org/emacs/Mark#mark
 - Use ripgrep? https://github.com/BurntSushi/ripgrep
-- Take a look at org-roam: https://www.orgroam.com; is this something I want to use?
+- Look at terminal options
 - Watch video on dired from system crafters. Someone also mentioned this: https://github.com/ralesi/ranger.el, https://ranger.github.io ...
-- Should we do hydras for org-mode and markdown-mode?
-- Take a look at =org-superstar=, which has many options to play with
+- Take a look at org-roam: https://www.orgroam.com; is this something I want to use?
 - I think we should go through all packages anyway and see how to best configure them
 - The automatic on-save fk/tangle is not working
 - =telephone-line= makes org-journal slow whenever I want to add something about the project name
 
+- +Should we do hydras for org-mode and markdown-mode? ... Hm, for lsp mode would be interesting! > Nope, for =lsp=, we just need =C-c u= > =lsp-keymap-prefix=, which is the entry point to many lsp-related functions+
+- +Take a look at =org-superstar=, which has many options to play with > Well, not so interesting+
 - +Maybe =eglot= instead of =lsp-mode=? https://www.youtube.com/watch?v=ROnceqt3kpE&t=56s+
   - +https://ddavis.io/posts/eglot-python-ide/+
   - +flycheck/flymake issues - does not have a nice interface with flymake to go through errors I guess? And does not show what the error is+
