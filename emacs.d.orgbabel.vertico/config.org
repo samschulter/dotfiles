@@ -778,8 +778,8 @@ Let's define a =hydra= with functions from =consult=
     _I_: imenu project      _k_: keep-lines
     _m_: mark ring          _f_: focus-lines
     _M_: mark ring global   _G_: grep
-    _o_: outline            _l_: locate
-    _H_: org-heading
+    _o_: outline            _R_: ripgrep
+    _H_: org-heading        _l_: locate
 
   " ("g"   consult-goto-line)
   ("i"   consult-imenu)
@@ -793,6 +793,7 @@ Let's define a =hydra= with functions from =consult=
   ("k"   consult-keep-lines)
   ("f"   consult-focus-lines)
   ("G"   consult-grep)
+  ("R"   consult-ripgrep)
   ("l"   consult-find)
   ("q"   nil "cancel" :color red))
 
@@ -1070,16 +1071,19 @@ Description of =markdown-mode= is [[https://jblevins.org/projects/markdown-mode/
 
 
 * NEXT
-- Take a look at registers: https://www.gnu.org/software/emacs/manual/html_node/emacs/Registers.html; Plus, =consult= has features for that: https://www.gnu.org/software/emacs/manual/html_node/emacs/Registers.html
-- Also, I didn't know there is a mark "register" ... https://www.emacswiki.org/emacs/Mark#mark
-- Use ripgrep? https://github.com/BurntSushi/ripgrep
-- Look at terminal options
 - Watch video on dired from system crafters. Someone also mentioned this: https://github.com/ralesi/ranger.el, https://ranger.github.io ...
+- Look at terminal options
 - Take a look at org-roam: https://www.orgroam.com; is this something I want to use?
 - I think we should go through all packages anyway and see how to best configure them
 - The automatic on-save fk/tangle is not working
 - =telephone-line= makes org-journal slow whenever I want to add something about the project name
 
+- +Use ripgrep? https://github.com/BurntSushi/ripgrep > Sure, I installed it and can use it with =consult-ripgrep= > Add it to the hydra for consult+
+- +=consult= has features for registers? > Yes, see https://github.com/minad/consult#register. > Is this useful? Maybe, let's try to integrate it into the config > Well, I can just use =C-x r= to open the =which-key= menu.+
+- +Take a look at registers: https://www.gnu.org/software/emacs/manual/html_node/emacs/Registers.html; Video from Prot: https://www.youtube.com/watch?v=u1YoF4ycLTY+
+  - +Yup, that's interesting and may be useful to me. Essentially it's a clipboard (like copy/paste), but you can have multiple nameable registers and you can put other forms of data besides text there.+
+  - +Interesting use cases: Put multiple texts into different registers. E.g., mark text A and do =C-x r i a= to store text A in register a. Then, you can mark text B and do =C-x r s b= to store text B in register b. You can then insert text B from register b via =C-x r s b=+
+  - +The other cool thing is that you can store other forms of data, like the location of the current point. Type =C-x r SPC a= to store point in register a. Then go somewhere else in emacs (other buffer, even the buffer can be closed). Then jump back to the stored point in register a via =C-x r j a=+
 - +Should we do hydras for org-mode and markdown-mode? ... Hm, for lsp mode would be interesting! > Nope, for =lsp=, we just need =C-c u= > =lsp-keymap-prefix=, which is the entry point to many lsp-related functions+
 - +Take a look at =org-superstar=, which has many options to play with > Well, not so interesting+
 - +Maybe =eglot= instead of =lsp-mode=? https://www.youtube.com/watch?v=ROnceqt3kpE&t=56s+
