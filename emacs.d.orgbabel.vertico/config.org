@@ -1,5 +1,8 @@
 #+STARTUP: fold
 
+* Notes
+- All paths to outside files (like journal files, binaries, conda environments, etc.) are assumed to have a symbolic link from somewhere inside the =user-emacs-directory=. For instance, we put links to binaries (like =miniconda3=) into the ~bin~ directory.
+
 * org-babel configuration
 
 Mostly taken from [[https://github.com/KaratasFurkan/.emacs.d#initel][Karatas Furkan]].
@@ -943,8 +946,8 @@ A few things we want from the Python-environment
 #+BEGIN_SRC emacs-lisp
 (use-package conda
   :init
-  (setq conda-env-home-directory "/Users/samuel/work/opt/miniconda3")
-  (setq conda-anaconda-home "/Users/samuel/work/opt/miniconda3")
+  (setq conda-env-home-directory (expand-file-name "bin/miniconda3" user-emacs-directory))
+  (setq conda-anaconda-home (expand-file-name "bin/miniconda3" user-emacs-directory))
 )
 #+END_SRC
 
@@ -1028,7 +1031,7 @@ Flycheck setup
   (python-mode . flycheck-mode)
   :config
   (setq flycheck-check-syntax-automatically '(mode-enabled save))  ;; Only check the buffer when it was saved
-  (setq flycheck-python-flake8-executable "/Users/samuel/work/opt/miniconda3/bin/flake8")
+  (setq flycheck-python-flake8-executable (expand-file-name "bin/miniconda3/bin/flake8" user-emacs-directory))
   (setq-default flycheck-disabled-checkers '(python-pylint))
   :bind (:map flycheck-mode-map
          ("C-c f" . hydra-flycheck/body))
