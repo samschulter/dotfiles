@@ -229,15 +229,15 @@ At startup, have a clean =scratch= buffer in =org-mode=
 (setq initial-major-mode 'org-mode)
 #+END_SRC
 
-Have a decently sized window frame
+Have a decently sized window frame (such that it fills 13 inch MBP display)
 
 #+BEGIN_SRC emacs-lisp
-(setq initial-frame-alist '((width . 175) ; chars
-                            (height . 55) ; lines
+(setq initial-frame-alist '((width . 138) ; chars
+                            (height . 42) ; lines
                             (left . 0)
                             (top . 0)))
-(setq default-frame-alist '((width . 175)
-                            (height . 55)
+(setq default-frame-alist '((width . 138)
+                            (height . 42)
                             (left . 0)
                             (top . 0)))
 #+END_SRC
