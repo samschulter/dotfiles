@@ -371,35 +371,35 @@ A function to toggle between a light and a dark theme. This is taken from [[http
 We are using [[https://github.com/dbordak/telephone-line][telephone-line]]
 
 #+BEGIN_SRC emacs-lisp
-(use-package telephone-line
-  :init
-  (display-time)  ;; Display time in modeline
-  (custom-set-variables '(display-battery-mode t)) ;; Display battery status
-  :custom
-  (telephone-line-primary-left-separator    'telephone-line-flat)
-  (telephone-line-secondary-left-separator  'telephone-line-flat)
-  (telephone-line-primary-right-separator   'telephone-line-flat)
-  (telephone-line-secondary-right-separator 'telephone-line-flat)
-  :config
-  ;; Custom segments
-  (telephone-line-defsegment telephone-line-conda-segment ()
-    (when (derived-mode-p 'python-mode)
-      (telephone-line-raw conda-env-current-name)))
-  (telephone-line-defsegment telephone-line-lsp-segment ()
-    (if lsp-mode
+  (use-package telephone-line
+    :init
+    (display-time)  ;; Display time in modeline
+    (custom-set-variables '(display-battery-mode t)) ;; Display battery status
+    :custom
+    (telephone-line-primary-left-separator    'telephone-line-flat)
+    (telephone-line-secondary-left-separator  'telephone-line-flat)
+    (telephone-line-primary-right-separator   'telephone-line-flat)
+    (telephone-line-secondary-right-separator 'telephone-line-flat)
+    :config
+    ;; Custom segments
+    (telephone-line-defsegment telephone-line-conda-segment ()
+      (when (derived-mode-p 'python-mode)
+        (telephone-line-raw conda-env-current-name)))
+    (telephone-line-defsegment telephone-line-lsp-segment ()
+      (when (bound-and-true-p lsp-mode)
         "[lsp]"))
-  (setq telephone-line-lhs
-        '((accent . (telephone-line-simple-major-mode-segment))
-          (nil    . (telephone-line-buffer-segment))
-          (nil    . (telephone-line-position-segment))))
-  (setq telephone-line-rhs
-        '((nil    . (telephone-line-conda-segment))
-          (nil    . (telephone-line-lsp-segment))
-          (nil    . (telephone-line-vc-segment))
-          (nil    . (telephone-line-flycheck-segment))))
-  (setq telephone-line-height 35)
-  (telephone-line-mode 1)
-)
+    (setq telephone-line-lhs
+          '((accent . (telephone-line-simple-major-mode-segment))
+            (nil    . (telephone-line-buffer-segment))
+            (nil    . (telephone-line-position-segment))))
+    (setq telephone-line-rhs
+          '((nil    . (telephone-line-conda-segment))
+            (nil    . (telephone-line-lsp-segment))
+            (nil    . (telephone-line-vc-segment))
+            (nil    . (telephone-line-flycheck-segment))))
+    (setq telephone-line-height 35)
+    (telephone-line-mode 1)
+  )
 #+END_SRC
 
 Other options for telephone-segments:
@@ -817,7 +817,7 @@ Let's define a =hydra= with functions from =consult=
    consult-bookmark consult-recent-file consult-xref
    consult--source-bookmark consult--source-recent-file
    consult--source-project-recent-file
-   :preview-key (kbd "M-."))
+   :preview-key "M-.")
   ;; By default `consult-project-function' uses `project-root' from project.el.
   ;; Optionally configure a different project root function.
   ;; There are multiple reasonable alternatives to chose from.
@@ -1037,6 +1037,8 @@ Flycheck setup
          ("C-c f" . hydra-flycheck/body))
 )
 #+END_SRC
+
+To get =flake8= running in all conda environments, install it in the "base" environment first with =pip install flake8=
 
 
 ** YAML
