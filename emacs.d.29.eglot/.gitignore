@@ -1,0 +1,16 @@
+.mc-lists.el
+auto-backup-files
+auto-save-list
+config.el
+history
+elpa
+custom.el
+journal
+projectile-bookmarks.eld
+projectile.cache
+recentf
+straight
+transient
+tree-sitter
+games
+org-persist
